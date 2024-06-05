@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/05 13:14:43 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:00:05 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,23 @@ int	main()
 	printf("%%c");
 	return 0;
 }*/
+
+int main() {
+    // Pruebas con diferentes conversiones de formato y casos especiales
+
+    // Conversiones de formato:
+    ft_printf(" %p %p ", 0, 0);
+    // ft_printf("%s\n", "Testing strings");
+    // ft_printf("%c\n", 'C');
+    // ft_printf("%d\n", 123);
+    // ft_printf("%i\n", -456);
+
+	printf(" %p %p ", 0, 0);
+    // printf("%s\n", "Testing strings");
+    // printf("%c\n", 'C');
+    // printf("%d\n", 123);
+    // printf("%i\n", -456);
+  
+
+    return 0;
+}

@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:08:43 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/05 13:14:57 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:41:35 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stddef.h>
 
 int	            ft_putnbr_base(unsigned int nbr, char *base);
 int				ft_putstr_fd(char *s, int fd);
