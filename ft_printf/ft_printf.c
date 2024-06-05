@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/05 13:08:03 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:14:43 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "ft_printf.h"
-
-int	ft_putnbr_base(unsigned int nbr, char *base);
 
 int	ft_cases(va_list args, char *format, int i)
 {
