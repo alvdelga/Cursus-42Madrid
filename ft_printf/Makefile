@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+         #
+#    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/20 19:53:16 by miguelgo          #+#    #+#              #
-#    Updated: 2024/03/21 19:28:51 by miguelgo         ###   ########.fr        #
+#    Created: 2024/06/01 13:09:46 by alvdelga          #+#    #+#              #
+#    Updated: 2024/06/05 13:10:07 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

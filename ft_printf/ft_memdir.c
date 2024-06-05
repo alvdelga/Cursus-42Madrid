@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:53:15 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/03/21 19:23:47 by miguelgo         ###   ########.fr       */
+/*   Created: 2024/06/01 13:08:21 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/05 13:08:30 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

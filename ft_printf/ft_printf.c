@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 14:29:10 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/04/24 20:32:01 by miguelgo         ###   ########.fr       */
+/*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/05 13:08:03 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdarg.h>
 #include <unistd.h>

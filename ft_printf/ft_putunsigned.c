@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putunsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 13:09:40 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/03/21 13:17:24 by miguelgo         ###   ########.fr       */
+/*   Created: 2024/06/01 13:09:32 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/05 13:09:41 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
