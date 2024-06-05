@@ -37,6 +37,9 @@ int	ft_memdir(void *p)
 	unsigned long long	pointer;
 	int					i;
 
+  if (p == 0)
+    return (ft_putstr_fd("(nil)", 1));
+
 	i = 0;
 	pointer = (unsigned long long)p;
 	write(1, "0x", 2);
