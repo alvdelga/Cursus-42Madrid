@@ -1,0 +1,8 @@
+.DS_Store
+.vscode
+gnlTester
+*.o
+*.out
+*.a
+*.gch
+*.exe
