@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 
 int	ft_putunsigned(unsigned int n, int i)
 {

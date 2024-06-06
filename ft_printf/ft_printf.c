@@ -6,38 +6,37 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/05 15:00:05 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:07:29 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 #include "ft_printf.h"
 
-int	ft_cases(va_list args, char *format, int i)
+int	ft_format(va_list args, char *structure, int i)
 {
 	int	c;
 
 	c = 0;
-	if (format[i] == 's')
+	if (structure[i] == 's')
 		c += ft_putstr_fd(va_arg(args, char *), 1);
-	else if (format[i] == 'c')
+	else if (structure[i] == 'c')
 		c += ft_putchar_fd((char)va_arg(args, int), 1);
-	else if (format[i] == 'i' || format[i] == 'd')
+	else if (structure[i] == 'i' || structure[i] == 'd')
 		c += ft_putnbr_fd((int)va_arg(args, int), 1, 0);
-	else if (format[i] == 'u')
+	else if (structure[i] == 'u')
 		c += ft_putunsigned((unsigned int)va_arg(args, unsigned int), 0);
-	else if (format[i] == 'x')
+	else if (structure[i] == 'x')
 		c += ft_putnbr_base((unsigned int)
 				va_arg(args, int), "0123456789abcdef");
-	else if (format[i] == 'X')
+	else if (structure[i] == 'X')
 		c += ft_putnbr_base((unsigned int)
 				va_arg(args, int), "0123456789ABCDEF");
-	else if (format[i] == '%' && format[i - 1] == '%')
+	else if (structure[i] == '%' && structure[i - 1] == '%')
 		c += ft_putchar_fd('%', 1);
-	else if (format[i] == 'p')
+	else if (structure[i] == 'p')
 		c += ft_memdir(va_arg(args, void *));
 	return (c);
 }
@@ -60,7 +59,7 @@ int	ft_putnbr_base(unsigned int nbr, char *base)
 	return (i);
 }
 
-int	ft_is_in_set(char c, char const *set)
+int	ft_inset(char c, char const *set)
 {
 	int	i;
 
@@ -74,7 +73,7 @@ int	ft_is_in_set(char c, char const *set)
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *structure, ...)
 {
 	va_list		args;
 	int			i;
@@ -82,18 +81,18 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	lenght = 0;
-	va_start(args, format);
-	if (!format)
+	va_start(args, structure);
+	if (!structure)
 		return (0);
-	while (format[i])
+	while (structure[i])
 	{
-		if (format[i] == '%' && ft_is_in_set(format[i + 1], "sXdcxpiu%"))
+		if (structure[i] == '%' && ft_inset(structure[i + 1], "sXdcxpiu%"))
 		{
-			lenght += ft_cases(args, (char *)format, ++i);
+			lenght += ft_format(args, (char *)structure, ++i);
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			write(1, &structure[i], 1);
 			lenght++;
 		}
 		i++;
@@ -101,6 +100,7 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (lenght);
 }
+
 /*#include <stdio.h>
 int	main()
 {
@@ -109,22 +109,21 @@ int	main()
 	return 0;
 }*/
 
-int main() {
-    // Pruebas con diferentes conversiones de formato y casos especiales
-
-    // Conversiones de formato:
-    ft_printf(" %p %p ", 0, 0);
-    // ft_printf("%s\n", "Testing strings");
-    // ft_printf("%c\n", 'C');
-    // ft_printf("%d\n", 123);
-    // ft_printf("%i\n", -456);
-
-	printf(" %p %p ", 0, 0);
-    // printf("%s\n", "Testing strings");
-    // printf("%c\n", 'C');
-    // printf("%d\n", 123);
-    // printf("%i\n", -456);
-  
-
-    return 0;
-}
+// int    main()
+// {
+//     char *a = "hola";
+//     ft_printf("%%%%%%%%%%%%%%\n", a, a, a);
+//        printf("%%%%%%%%%%%%%%\n", a, a, a);
+//     return 0;
+// }
+// int    main()
+// {
+//     char *array = "hola";
+//     int i = ft_printf("%p%%%%pp%%%%\n", array);
+//        int a = printf("%p%%%%pp%%%%\n", array);
+// 	ft_printf("%d\n", i);
+// 	ft_printf("%d\n", a);
+// 	printf("%d\n", i);
+// 	printf("%d\n", a);
+//     return 0;
+// }

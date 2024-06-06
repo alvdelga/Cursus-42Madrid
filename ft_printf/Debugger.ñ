@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
+
 int    ft_putstr_fd(char *s, int fd)
 {
     int    i;
@@ -17,6 +18,41 @@ int    ft_putstr_fd(char *s, int fd)
         i++;
     }
     return (i);
+}
+
+static int	hexa_pointer(char *base, unsigned long long n, int c)
+{
+	unsigned long long b;
+
+	b = 16;
+	if (n >= b)
+	{
+		c = hexa_pointer(base, n / b, c);
+		write (1, &base[n % b], 1);
+		c++;
+	}
+	else if (n < b)
+	{
+		write (1, &base[n], 1);
+		c++;
+	}
+	return (c);
+}
+
+int	ft_memdir(void *p)
+{
+	unsigned long long	pointer;
+	int					i;
+
+	if (p == 0)
+    return (ft_putstr_fd("(nil)", 1));
+
+	i = 0;
+	pointer = (unsigned long long)p;
+	write(1, "0x", 2);
+	i = hexa_pointer("0123456789abcdef", pointer, i);
+	i += 2;
+	return (i);
 }
 
 int    ft_putchar_fd(char c, int fd)
@@ -50,13 +86,19 @@ int    ft_putnbr_fd(int n, int fd, int i)
     return (i);
 }
 
-int    ft_cases(va_list args, char *format, int i)
+int    ft_cases(va_list arguments, char *format, int i)
 {
     int    c;
 
     c = 0;
     if (format[i] == 's')
-        c += ft_putstr_fd(va_arg(args, char *), 1);
+        c += ft_putstr_fd(va_arg(arguments, char *), 1);
+	
+	else if (format[i] == 'p')
+		c += ft_memdir(va_arg(arguments, void *));
+    else if (format[i] == 'i' || format[i] == 'd')
+		c += ft_putnbr_fd((int)va_arg(arguments, int), 1, 0);
+
     return (c);
 }
 
@@ -94,20 +136,20 @@ int    ft_is_in_set(char c, char const *set)
 
 int    ft_printf(const char *format, ...)
 {
-    va_list        args;
+    va_list        arguments;
     int            i;
     int            lenght;
 
     i = 0;
     lenght = 0;
-    va_start(args, format);
+    va_start(arguments, format);
     if (!format)
         return (0);
     while (format[i])
     {
         if (format[i] == '%' && ft_is_in_set(format[i + 1], "sXdcxpiu%"))
         {
-            lenght += ft_cases(args, (char *)format, ++i);
+            lenght += ft_cases(arguments, (char *)format, ++i);
         }
         else
         {
@@ -116,15 +158,33 @@ int    ft_printf(const char *format, ...)
         }
         i++;
     }
-    va_end(args);
-    printf("%d", lenght);
+	//printf("%d\n", lenght);
+    va_end(arguments);
     return (lenght);
 }
+/*int main()
+{
+    char *array = "Hola";
+    int c = ft_printf("%p\n", array);
+	int d = ft_printf("%p\n", array);
+
+    printf("Total characters printed: %d\n", c);
+    printf("Total characters printed: %d\n", d);
+    return 0;
+}*/
 
 int    main()
 {
-    char *array = "Hola Mundo";
-    ft_printf("%s", array);
-    printf("%s", array);
+    char *array = "hola";
+    int i = ft_printf("%p%%%%pp%%%%\n", array);
+       int a = printf("%p%%%%pp%%%%\n", array);
+
+	// ft_printf("%d\n", i);
+	// ft_printf("%d\n", a);
+	// printf("%d\n", i);
+	// printf("%d\n", a);
+
+
     return 0;
 }
+
