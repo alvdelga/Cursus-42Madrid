@@ -6,12 +6,11 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 19:58:50 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:07:44 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <string.h>
 
 int	ft_format(va_list args, char *structure, int i)
 {
@@ -75,7 +74,7 @@ int	end_percent(const char *str)
 {
 	size_t	len;
 
-	len = strlen(str);
+	len = ft_strlen(str);
 	return (str[len - 1] == '%' && str[len - 2] != '%');
 }
 
