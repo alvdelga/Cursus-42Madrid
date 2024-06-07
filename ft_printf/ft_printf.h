@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: malvarde <malvarde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:08:43 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/06 18:57:55 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:05:16 by malvarde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <stdio.h>
 
 int				ft_putnbr_base(unsigned int nbr, char *base);
 int				ft_putstr_fd(char *s, int fd);

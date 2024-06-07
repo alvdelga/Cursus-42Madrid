@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: malvarde <malvarde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 09:35:13 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:47:19 by malvarde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,30 +98,11 @@ int	ft_printf(const char *structure, ...)
 	return (lenght);
 }
 
-#include <stdio.h>
-int	main()
-{
-	char *stream = 0;
-	ft_printf("%p\n", stream);
-	printf("%p\n", stream);
-	return 0;
-}
-
-// int    main()
+// #include <stdio.h>
+// int	main()
 // {
-//     char *a = "hola";
-//     ft_printf("%%%%%%%%%%%%%%\n", a, a, a);
-//        printf("%%%%%%%%%%%%%%\n", a, a, a);
-//     return 0;
-// }
-// int    main()
-// {
-//     char *array = "hola";
-//     int i = ft_printf("%p%%%%pp%%%%\n", array);
-//        int a = printf("%p%%%%pp%%%%\n", array);
-// 	ft_printf("%d\n", i);
-// 	ft_printf("%d\n", a);
-// 	printf("%d\n", i);
-// 	printf("%d\n", a);
-//     return 0;
+// 	char *stream = 0;
+// 	ft_printf("0,0000000%");
+// 	   printf("0,0000000%");
+// 	return 0;
 // }

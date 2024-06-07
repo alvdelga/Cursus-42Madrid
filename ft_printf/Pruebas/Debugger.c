@@ -86,18 +86,20 @@ int    ft_putnbr_fd(int n, int fd, int i)
     return (i);
 }
 
-int    ft_cases(va_list arguments, char *format, int i)
+int    ft_format(va_list args, char *structure, int i)
 {
     int    c;
 
     c = 0;
-    if (format[i] == 's')
-        c += ft_putstr_fd(va_arg(arguments, char *), 1);
+    if (structure[i] == 's')
+        c += ft_putstr_fd(va_arg(args, char *), 1);
 	
-	else if (format[i] == 'p')
-		c += ft_memdir(va_arg(arguments, void *));
-    else if (format[i] == 'i' || format[i] == 'd')
-		c += ft_putnbr_fd((int)va_arg(arguments, int), 1, 0);
+	else if (structure[i] == 'p')
+		c += ft_memdir(va_arg(args, void *));
+    else if (structure[i] == 'i' || structure[i] == 'd')
+		c += ft_putnbr_fd((int)va_arg(args, int), 1, 0);
+	else if (structure[i] == '%' && structure[i - 1] == '%')
+		c += ft_putchar_fd('%', 1);
 
     return (c);
 }
@@ -134,32 +136,32 @@ int    ft_is_in_set(char c, char const *set)
     return (0);
 }
 
-int    ft_printf(const char *format, ...)
+int    ft_printf(const char *structure, ...)
 {
-    va_list        arguments;
+    va_list        args;
     int            i;
     int            lenght;
 
     i = 0;
     lenght = 0;
-    va_start(arguments, format);
-    if (!format)
+    va_start(args, structure);
+    if (!structure)
         return (0);
-    while (format[i])
+    while (structure[i])
     {
-        if (format[i] == '%' && ft_is_in_set(format[i + 1], "sXdcxpiu%"))
+        if (structure[i] == '%' && ft_is_in_set(structure[i + 1], "sXdcxpiu%"))
         {
-            lenght += ft_cases(arguments, (char *)format, ++i);
+            lenght += ft_format(args, (char *)structure, ++i);
         }
         else
         {
-            write(1, &format[i], 1);
+            write(1, &structure[i], 1);
             lenght++;
         }
         i++;
     }
 	//printf("%d\n", lenght);
-    va_end(arguments);
+    va_end(args);
     return (lenght);
 }
 /*int main()
