@@ -6,11 +6,12 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 13:55:36 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/07 19:58:50 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <string.h>
 
 int	ft_format(va_list args, char *structure, int i)
 {
@@ -56,7 +57,7 @@ int	ft_putnbr_base(unsigned int nbr, char *base)
 	return (i);
 }
 
-int	ft_inSet(char c, char const *set)
+int	ft_in_set(char c, char const *set)
 {
 	int	i;
 
@@ -69,12 +70,13 @@ int	ft_inSet(char c, char const *set)
 	}
 	return (0);
 }
-#include <string.h>
 
-int end_percent(const char *str)
+int	end_percent(const char *str)
 {
-    size_t len = strlen(str);
-    return (str[len - 1] == '%' && str[len - 2] != '%');
+	size_t	len;
+
+	len = strlen(str);
+	return (str[len - 1] == '%' && str[len - 2] != '%');
 }
 
 int	ft_printf(const char *structure, ...)
@@ -91,11 +93,9 @@ int	ft_printf(const char *structure, ...)
 	while (structure[i])
 	{
 		if (end_percent(structure))
-			return(-1);
-		if (structure[i] == '%' && ft_inSet(structure[i + 1], "scidXxpu%"))
-		{
+			return (-1);
+		if (structure[i] == '%' && ft_in_set(structure[i + 1], "scidXxpu%"))
 			lenght += ft_format(args, (char *)structure, ++i);
-		}
 		else
 		{
 			write(1, &structure[i], 1);
