@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malvarde <malvarde@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 11:47:19 by malvarde         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:55:36 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ int	ft_inSet(char c, char const *set)
 	}
 	return (0);
 }
+#include <string.h>
+
+int end_percent(const char *str)
+{
+    size_t len = strlen(str);
+    return (str[len - 1] == '%' && str[len - 2] != '%');
+}
 
 int	ft_printf(const char *structure, ...)
 {
@@ -83,6 +90,8 @@ int	ft_printf(const char *structure, ...)
 		return (0);
 	while (structure[i])
 	{
+		if (end_percent(structure))
+			return(-1);
 		if (structure[i] == '%' && ft_inSet(structure[i + 1], "scidXxpu%"))
 		{
 			lenght += ft_format(args, (char *)structure, ++i);
@@ -97,12 +106,3 @@ int	ft_printf(const char *structure, ...)
 	va_end(args);
 	return (lenght);
 }
-
-// #include <stdio.h>
-// int	main()
-// {
-// 	char *stream = 0;
-// 	ft_printf("0,0000000%");
-// 	   printf("0,0000000%");
-// 	return 0;
-// }
