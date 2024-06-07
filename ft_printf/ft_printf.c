@@ -6,13 +6,10 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/06 11:07:29 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/07 09:35:13 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 int	ft_format(va_list args, char *structure, int i)
@@ -59,7 +56,7 @@ int	ft_putnbr_base(unsigned int nbr, char *base)
 	return (i);
 }
 
-int	ft_inset(char c, char const *set)
+int	ft_inSet(char c, char const *set)
 {
 	int	i;
 
@@ -86,7 +83,7 @@ int	ft_printf(const char *structure, ...)
 		return (0);
 	while (structure[i])
 	{
-		if (structure[i] == '%' && ft_inset(structure[i + 1], "sXdcxpiu%"))
+		if (structure[i] == '%' && ft_inSet(structure[i + 1], "scidXxpu%"))
 		{
 			lenght += ft_format(args, (char *)structure, ++i);
 		}
@@ -101,13 +98,14 @@ int	ft_printf(const char *structure, ...)
 	return (lenght);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 int	main()
 {
-	ft_printf("%%c ");
-	printf("%%c");
+	char *stream = 0;
+	ft_printf("%p\n", stream);
+	printf("%p\n", stream);
 	return 0;
-}*/
+}
 
 // int    main()
 // {
