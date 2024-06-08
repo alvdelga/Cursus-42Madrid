@@ -17,7 +17,7 @@ AR = ar crs
 
 NAME	=	libftprintf.a
 
-SRC	=	ft_printf.c ft_putchar_fd.c ft_putstr_fd.c \
+SRC	=	ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c\
 		ft_putnbr_fd.c ft_putunsigned.c ft_memdir.c \
 
 OBJS = $(SRC:.c=.o)

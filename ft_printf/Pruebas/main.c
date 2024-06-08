@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include "../ft_printf.h"
 
-#include <stdio.h>
+
+
+
 // int	main()
 // {
 // 	char *stream = "hola";
@@ -15,9 +17,20 @@
 // }
 // int	main()
 // {
-// 	char *stream = 0;
-// 	ft_printf("2%");
-// 	   printf("2hola%");
+//     void *ptr = (void *)42;
+//     int i = ft_printf(" %p ", ptr);
+//     int a = printf(" %p ", ptr);
+
+//     ft_printf("%d\n", i);
+//     printf("%d\n", a);
+//     ft_printf("%d\n", i);
+//     printf("%d\n", a);
+
+//     void *add = (void *)42;
+//     void *ptr2 = (void *)NULL;
+//     ft_printf(" %p %p ", add, ptr2);
+//     printf(" %p %p ", add, ptr2);
+
 // 	return 0;
 // }
 
@@ -30,17 +43,17 @@
 // }
 
 
-int main()
-{
-    char *array = "hola";
-    int i = ft_printf("SSSSSS%sSSSS%", array, array);
-       int a = printf("SSSSSS%sSSSS%", array, array);
-	ft_printf("%d\n", i);
-	ft_printf("%d\n", a);
-	printf("%d\n", i);
-	printf("%d\n", a);
-    return 0;
-}
+// int main()
+// {
+//     char *array = "hola";
+//     int i = ft_printf("SSSSSS%sSSSS%", array, array);
+//        int a = printf("SSSSSS%sSSSS%", array, array);
+// 	ft_printf("%d\n", i);
+// 	ft_printf("%d\n", a);
+// 	printf("%d\n", i);
+// 	printf("%d\n", a);
+//     return 0;
+// }
 
 // int    main()
 // {
