@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 13:09:46 by alvdelga          #+#    #+#              #
-#    Updated: 2024/06/06 19:14:32 by alvdelga         ###   ########.fr        #
+#    Updated: 2024/06/09 14:13:02 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ AR = ar crs
 
 NAME	=	libftprintf.a
 
-SRC	=	ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c\
+SRC	=	ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c \
 		ft_putnbr_fd.c ft_putunsigned.c ft_memdir.c \
 
 OBJS = $(SRC:.c=.o)

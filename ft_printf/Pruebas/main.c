@@ -1,18 +1,26 @@
-#include <limits.h>
-#include <stddef.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "../ft_printf.h"
-
-
+#include "../ft_printf/ft_printf.h"
 
 
 // int	main()
 // {
+// 	int i = ft_printf("%%%%hola%%%%");
+// 	printf("\n");
+// 	int a = printf("%%%%hola%%%%");
+// 	printf("\n");
+// 	printf("%d\n", i);
+// 	printf("%d\n", a);
+// 	return 0;
+// }
+
+// int	main()
+// {
 // 	char *stream = "hola";
-// 	ft_printf("0%", stream);
+// 	int i = ft_printf(" ");
 //     ft_printf("\n");
-// 	printf("0%", stream);
+// 	int a = printf(" ");
+//     printf("\n");
+//     printf("%d\n", i);
+//     printf("%d\n", a);
 // 	return 0;
 // }
 // int	main()
@@ -59,13 +67,13 @@
 // {
 //     char *array = "hola";
 //     int d = 10;
-//     int i = ft_printf("%d%%%%s%%%%\n", d, array);
-//        int a = printf("%d%%%%s%%%%\n", d, array);
+//     int i = ft_printf("%d%%%%s%%%%\n%", d, array);
+//        int a = printf("%d%%%%s%%%%\n%", d, array);
 
-// 	// ft_printf("%d\n", i);
-// 	// ft_printf("%d\n", a);
-// 	// printf("%d\n", i);
-// 	// printf("%d\n", a);
+// 	ft_printf("%d\n", i);
+// 	ft_printf("%d\n", a);
+// 	printf("%d\n", i);
+// 	printf("%d\n", a);
 
 
 //     return 0;
@@ -117,30 +125,80 @@
 //     return 0;
 // }
 
-// int main() {
-//     // Caso de gestión de conversiones simples
-//     printf("Original return: %d\n", printf("Este es un ejemplo de cadena simple\n"));
-//     printf("Custom return: %d\n", ft_printf("Este es un ejemplo de cadena simple\n"));
+int main() {
+    // Caso de gestión de conversiones simples
+    printf("Original return: %d\n", printf("Este es un ejemplo de cadena simple\n"));
+    printf("Custom return: %d\n", ft_printf("Este es un ejemplo de cadena simple\n"));
     
-//     // Caso de conversión con varios argumentos
-//     printf("Original return: %d\n", printf("Entero: %d, Carácter: %c, Cadena: %s\n", 42, 'A', "Hola mundo"));
-//     printf("Custom return: %d\n", ft_printf("Entero: %d, Carácter: %c, Cadena: %s\n", 42, 'A', "Hola mundo"));
+    // Caso de conversión con varios argumentos
+    printf("Original return: %d\n", printf("Entero: %d, Carácter: %c, Cadena: %s\n", 42, 'A', "Hola mundo"));
+    printf("Custom return: %d\n", ft_printf("Entero: %d, Carácter: %c, Cadena: %s\n", 42, 'A', "Hola mundo"));
     
-//     // Caso de gestión de conversiones con valores especiales
-//     printf("Original return: %d\n", printf("Cero: %d, El int más pequeño: %d, Cadena vacía: %s, Puntero NULL: %p\n", 0, INT_MIN, "", NULL));
-//     printf("Custom return: %d\n", ft_printf("Cero: %d, El int más pequeño: %d, Cadena vacía: %s, Puntero NULL: %p\n", 0, INT_MIN, "", NULL));
+    // Caso de gestión de conversiones con valores especiales
+    printf("Original return: %d\n", printf("Cero: %d, El int más pequeño: %d, Cadena vacía: %s, Puntero NULL: %p\n", 0, INT_MIN, "", NULL));
+    printf("Custom return: %d\n", ft_printf("Cero: %d, El int más pequeño: %d, Cadena vacía: %s, Puntero NULL: %p\n", 0, INT_MIN, "", NULL));
     
-//     // Caso de múltiples conversiones en medio de una oración
-//     printf("Original return: %d\n", printf("Esto es un número: %d, seguido de una cadena: %s, y un carácter: %c\n", 123, "Hola", '!'));
-//     printf("Custom return: %d\n", ft_printf("Esto es un número: %d, seguido de una cadena: %s, y un carácter: %c\n", 123, "Hola", '!'));
+    // Caso de múltiples conversiones en medio de una oración
+    printf("Original return: %d\n", printf("Esto es un número: %d, seguido de una cadena: %s, y un carácter: %c\n", 123, "Hola", '!'));
+    printf("Custom return: %d\n", ft_printf("Esto es un número: %d, seguido de una cadena: %s, y un carácter: %c\n", 123, "Hola", '!'));
 
-//     // Caso de conversiones idénticas una tras otra
-//     printf("Original return: %d\n", printf("Múltiples conversiones: %d %d %d\n", 42, 42, 42));
-//     printf("Custom return: %d\n", ft_printf("Múltiples conversiones: %d %d %d\n", 42, 42, 42));
+    // Caso de conversiones idénticas una tras otra
+    printf("Original return: %d\n", printf("Múltiples conversiones: %d %d %d\n", 42, 42, 42));
+    printf("Custom return: %d\n", ft_printf("Múltiples conversiones: %d %d %d\n", 42, 42, 42));
 
-//     // Caso de combinaciones de conversiones más complejas
-//     printf("Original return: %d\n", printf("Combinaciones complejas: %c %s %p %d %x %X %u\n", 'A', "Hello", (void *)0x12345678, 42, 42, 42, 42));
-//     printf("Custom return: %d\n", ft_printf("Combinaciones complejas: %c %s %p %d %x %X %u\n", 'A', "Hello", (void *)0x12345678, 42, 42, 42, 42));
+    // Caso de combinaciones de conversiones más complejas
+    printf("Original return: %d\n", printf("Combinaciones complejas: %c %s %p %d %x %X %u\n", 'A', "Hello", (void *)0x12345678, 42, 42, 42, 42));
+    printf("Custom return: %d\n", ft_printf("Combinaciones complejas: %c %s %p %d %x %X %u\n", 'A', "Hello", (void *)0x12345678, 42, 42, 42, 42));
+
+    return 0;
+}
+
+//////////////
+
+// int main()
+// {
+//     ft_printf("Esto es una cadena de prueba sin ningún especificador de formato.\n");
+//     return 0;
+// }
+
+
+// int main()
+// {
+//     // Pruebas con printf
+//     printf("===== Pruebas con printf =====\n");
+//     printf("Número: %d\n", 0);
+//     printf("Entero más pequeño: %d\n", INT_MIN);
+//     printf("Cadena vacía: %s\n", "");
+//     printf("Puntero NULL: %p\n", NULL);
+
+//     // Pruebas con ft_printf
+//     printf("===== Pruebas con ft_printf =====\n");
+//     ft_printf("Número: %d\n", 0);
+//     ft_printf("Entero más pequeño: %d\n", INT_MIN);
+//     ft_printf("Cadena vacía: %s\n", "");
+//     ft_printf("Puntero NULL: %p\n", NULL);
+
+//     return 0;
+// }
+
+
+// int main()
+// {
+//     // Pruebas con printf
+//     printf("===== Pruebas con printf =====\n");
+//     printf("Número: %d\n", 42);
+//     printf("Cadena: %s, Número: %d, Carácter: %c\n", "Hola", 123, 'A');
+//     printf("Entero más pequeño: %d\n", INT_MIN);
+//     printf("Cadena vacía: %s\n", "");
+//     printf("Puntero NULL: %p\n", NULL);
+
+//     // Pruebas con ft_printf
+//     printf("===== Pruebas con ft_printf =====\n");
+//     ft_printf("Número: %d\n", 42);
+//     ft_printf("Cadena: %s, Número: %d, Carácter: %c\n", "Hola", 123, 'A');
+//     ft_printf("Entero más pequeño: %d\n", INT_MIN);
+//     ft_printf("Cadena vacía: %s\n", "");
+//     ft_printf("Puntero NULL: %p\n", NULL);
 
 //     return 0;
 // }

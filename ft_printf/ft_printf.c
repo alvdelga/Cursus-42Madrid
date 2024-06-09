@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 20:07:44 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:45:25 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ int	ft_format(va_list args, char *structure, int i)
 
 	c = 0;
 	if (structure[i] == 's')
-		c += ft_putstr_fd(va_arg(args, char *), 1);
+		c = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (structure[i] == 'c')
-		c += ft_putchar_fd((char)va_arg(args, int), 1);
+		c = ft_putchar_fd((char)va_arg(args, int), 1);
 	else if (structure[i] == 'i' || structure[i] == 'd')
-		c += ft_putnbr_fd((int)va_arg(args, int), 1, 0);
+		c = ft_putnbr_fd(va_arg(args, int), 1, 0);
 	else if (structure[i] == 'u')
-		c += ft_putunsigned((unsigned int)va_arg(args, unsigned int), 0);
+		c = ft_putunsigned(va_arg(args, unsigned int), 0);
 	else if (structure[i] == 'x')
-		c += ft_putnbr_base((unsigned int)
+		c = ft_putnbr_base((unsigned int)
 				va_arg(args, int), "0123456789abcdef");
 	else if (structure[i] == 'X')
-		c += ft_putnbr_base((unsigned int)
+		c = ft_putnbr_base((unsigned int)
 				va_arg(args, int), "0123456789ABCDEF");
 	else if (structure[i] == '%' && structure[i - 1] == '%')
-		c += ft_putchar_fd('%', 1);
+		c = ft_putchar_fd('%', 1);
 	else if (structure[i] == 'p')
-		c += ft_memdir(va_arg(args, void *));
+		c = ft_memdir(va_arg(args, void *));
 	return (c);
 }
 
