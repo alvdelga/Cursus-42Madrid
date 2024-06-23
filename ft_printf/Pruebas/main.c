@@ -21,26 +21,27 @@
 // 	return 0;
 // }
 
-// int    main()
-// {
-//     char *a = "hola";
-//     ft_printf("%%%%%%%%%%%%%%\n", a, a, a);
-//        printf("%%%%%%%%%%%%%%\n", a, a, a);
-//     return 0;
-// }
-
-
-int main()
+int    main()
 {
-    char *array = "hola";
-    int i = ft_printf("SSSSSS%sSSSS%", array, array);
-       int a = printf("SSSSSS%sSSSS%", array, array);
-	ft_printf("%d\n", i);
-	ft_printf("%d\n", a);
-	printf("%d\n", i);
-	printf("%d\n", a);
+    char *a = "hola";
+    ft_printf("%%%%%%%%%%%%%1%", a, a, a);
+    printf("\n");
+       printf("%%%%%%%%%%%%%1%", a, a, a);
     return 0;
 }
+
+
+// int main()
+// {
+//     char *array = "hola";
+//     int i = ft_printf("SSSSSS%sSSSS%", array, array);
+//        int a = printf("SSSSSS%sSSSS%", array, array);
+// 	ft_printf("%d\n", i);
+// 	ft_printf("%d\n", a);
+// 	printf("%d\n", i);
+// 	printf("%d\n", a);
+//     return 0;
+// }
 
 // int    main()
 // {
