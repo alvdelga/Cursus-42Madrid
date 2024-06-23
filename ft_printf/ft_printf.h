@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:08:43 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/06/07 14:01:45 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/06/09 14:17:16 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <limits.h>
 # include <unistd.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -25,5 +26,5 @@ int				ft_putnbr_fd(int n, int fd, int i);
 int				ft_printf(const char *format, ...);
 int				ft_putunsigned(unsigned int n, int i);
 int				ft_memdir(void *p);
-
+size_t			ft_strlen(const char *str);
 #endif

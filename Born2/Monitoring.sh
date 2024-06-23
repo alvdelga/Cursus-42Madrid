@@ -4,13 +4,6 @@
 yellowColour="\e[0;33m\033[1m"
 redColour="\e[0;31m\033[1m"
 
-greenColour="\e[0;32m\033[1m"
-endColour="\033[0m\e[0m"
-blueColour="\e[0;34m\033[1m"
-purpleColour="\e[0;35m\033[1m"
-turquoiseColour="\e[0;36m\033[1m"
-grayColour="\e[0;37m\033[1m"
-
 trap ctrl_c SIGINT
 
 function ctrl_c(){
@@ -28,8 +21,8 @@ function ctrl_c(){
  virtual_cpu=$(cat /proc/cpuinfo | grep  processor | sort -u | wc -l)
  
  # Uso de memoria RAM y su porcentaje en megabytes
- mem_total=$(free -mega | awk '/Mem:/' | awk '{print $2}')
- mem_used=$(free -mega | awk '/Mem:/' | awk '{print $3}')
+ mem_total=$(free --mega | awk '/Mem:/' | awk '{print $2}')
+ mem_used=$(free --mega | awk '/Mem:/' | awk '{print $3}')
  mem_percentage=$(echo "scale=2; ($mem_used/$mem_total)*100" | bc)
 
  # Uso de disco y su porcentaje
@@ -37,8 +30,13 @@ function ctrl_c(){
  disk_used=$(df -h --total | awk '/total/' | awk '{print $3}')
  disk_percentage=$(df -h --total | awk '/total/' | awk '{print $5}')
  
+ # CPU LOAD
+ #cpul=$(vmstat 1 2 | tail -1 | awk '{printf $15}')
+ #cpu_op=$(expr 100 - $cpul)
+ #cpu_fin=$(printf "%.1f" $cpu_op)
+
  # Obtener la carga de CPU actual
- cpu_load=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8 "%"}')
+ cpu_load=$(top -bn1 | grep "Cpu(s)" | awk -F '[,]' '{print 100 - $4 "%"}')
  
  # Obtener la fecha y hora del último reinicio
  last_boot=$(who -b | awk '{print $3 " " $4}')
@@ -60,18 +58,19 @@ function ctrl_c(){
  sudo_cmds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
  
  # Construir el mensaje
- message="# Architecture: $architecture
- # CPU physical: $physical_cpu
- # vCPU: $virtual_cpu
- # Memory Usage: $mem_used / ${mem_total} MB ($mem_percentage%)
- # Disk Usage: $disk_total / $disk_used ($disk_percentage)
- # CPU load: $cpu_load
- # Last boot: $last_boot
- # LVM use: $lvm_active
- # TCP Connections: $connections ESTABLISHED
- # User log: $users
- # Network: IP $ip ($mac)
- # Sudo: $sudo_cmds cmd"
+ message="
+ #Architecture: $architecture
+ #CPU physical: $physical_cpu
+ #vCPU: $virtual_cpu
+ #Memory Usage: $mem_used / ${mem_total} MB ($mem_percentage%)
+ #Disk Usage: $disk_total / $disk_used ($disk_percentage)
+ #CPU load: $cpu_load
+ #Last boot: $last_boot
+ #LVM use: $lvm_active
+ #TCP Connections: $connections ESTABLISHED
+ #User log: $users
+ #Network: IP $ip ($mac)
+ #Sudo: $sudo_cmds cmd"
  
  # Mostrar el mensaje usando wall
- echo "$message"
+ echo "$message" | wall
