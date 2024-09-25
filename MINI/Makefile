@@ -25,11 +25,11 @@ $(LIBFT) :
 
 $(SERVER) : main_server.o error.o includes/minitalk.h
 	@$(CC) main_server.o error.o $(LIBS) -o $@
-	@printf "\e[38;5;226m./$@ successfully build🥑\e[0m\n"
+	@printf "\e[38;5;226m./$@ successfully build\e[0m\n"
 
 $(CLIENT) : main_client.o error.o includes/minitalk.h
 	@$(CC) main_client.o error.o $(LIBS) -o $@
-	@printf "\e[38;5;46m./$@ successfully build🥝\e[0m\n"
+	@printf "\e[38;5;46m./$@ successfully build\e[0m\n"
 
 %.o : %.c
 	@$(CC) $(FLAGS) $< -c -I includes
