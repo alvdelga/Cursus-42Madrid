@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 18:28:23 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/09/25 18:28:26 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:41:03 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include "stdlib.h"
 # include "stdio.h"
 # include "libft.h"
-# include "string.h"
+// # include "string.h"
+# include "stdint.h"
+# include "unistd.h"
 
 void				*ft_memset(void *b, int c, size_t len);
 size_t				ft_strlen(const char *s);

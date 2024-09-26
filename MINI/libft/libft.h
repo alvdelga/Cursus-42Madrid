@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:11:48 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/04/20 13:03:40 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:39:10 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "stdio.h"
 # include "libft.h"
 # include "string.h"
+# include "stdint.h"
 
 void				*ft_memset(void *b, int c, size_t len);
 size_t				ft_strlen(const char *s);

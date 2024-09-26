@@ -36,12 +36,12 @@ void	send_char(int pid, unsigned char byte)
 		if (byte & counter)
 		{
 			if (kill(pid, SIGUSR1) == -1)
-				error("bad pid\n");
+				error("[!] Bad pid, try again...\n");
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
-				error("bad pid\n");
+				error("[!] Bad pid, try again...\n");
 		}
 		counter >>= 1;
 		usleep(600);

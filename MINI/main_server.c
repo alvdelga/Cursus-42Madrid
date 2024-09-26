@@ -93,9 +93,9 @@ int			main(void)
 	active_act.sa_flags = SA_SIGINFO;
 	null_act.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &active_act, NULL) != 0)
-		error("signal error\n");
+		error("[!] Signal error\n");
 	if (sigaction(SIGUSR2, &null_act, NULL) != 0)
-		error("signal error\n");
+		error("[!] Signal error\n");
 	print_pid();
 	ft_bzero(g_to_print.message, BUFFSIZE);
 	main_handler();
