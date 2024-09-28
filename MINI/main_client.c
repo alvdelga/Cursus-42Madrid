@@ -16,10 +16,6 @@
 #include "libft.h"
 #include "minitalk.h"
 
-/*
-** Parameters: ./client [server-pid] [message]
-*/
-
 void	usage(void)
 {
 	write(1, "usage: ./client [server-pid] [message]\n", 39);

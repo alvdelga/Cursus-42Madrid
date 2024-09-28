@@ -21,7 +21,7 @@ void		print_pid(void)
 	char	*tmp_pid;
 
 	tmp_pid = ft_itoa(getpid());
-	write(1, "pid: ", 5);
+	write(1, "[+] Your Pid is: ", 17);
 	write(1, tmp_pid, ft_strlen(tmp_pid));
 	write(1, "\n", 1);
 	free(tmp_pid);
@@ -80,7 +80,7 @@ _Bool		main_handler(void)
 			g_to_print.buff_overflow = FALSE;
 		}
 	}
-	return (TRUE);
+	//return (TRUE);
 }
 
 int			main(void)
@@ -100,3 +100,12 @@ int			main(void)
 	ft_bzero(g_to_print.message, BUFFSIZE);
 	main_handler();
 }
+
+// struct sigaction {
+//     void (*sa_handler)(int);
+//     void (*sa_sigaction)(int, siginfo_t *, void *);
+//     sigset_t sa_mask;
+//     int sa_flags;
+//     void (*sa_restorer)(void);
+// };
+
