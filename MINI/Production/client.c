@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leam <leam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 09:55:46 by leam              #+#    #+#             */
-/*   Updated: 2024/09/28 10:10:20 by leam             ###   ########.fr       */
+/*   Updated: 2024/09/30 14:10:35 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ int main(int argc, char **argv) {
     pid_t server_pid = atoi(argv[1]);
     char *mensaje = argv[2];
 
-    for (size_t i = 0; i < strlen(mensaje); i++) {
+    size_t i = 0;
+    while (i < strlen(mensaje))
+    {
         send_char(server_pid, mensaje[i]); // Enviamos cada caracter
+        i++;
     }
+
 
     return 0;
 }

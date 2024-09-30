@@ -6,15 +6,16 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 09:40:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/09/30 09:40:25 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:59:04 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdint.h>
 
-char current_char = 0;
+uint8_t current_char = 0;
 int bit_position = 0;
 
 void handle_sigusr1(int sig) {

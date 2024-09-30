@@ -109,3 +109,32 @@ int			main(void)
 //     void (*sa_restorer)(void);
 // };
 
+// int main(void)
+// {
+//     struct sigaction active_act;
+//     struct sigaction null_act;
+
+//     // Inicializa g_to_print aquí
+//     g_to_print.top_byte = 0;
+//     g_to_print.top_bit = 0;
+//     g_to_print.buff_overflow = FALSE;
+//     g_to_print.all_receive = FALSE;
+//     ft_bzero(g_to_print.message, BUFFSIZE);
+
+//     active_act.sa_sigaction = activebit;
+//     null_act.sa_sigaction = nullbit;
+//     active_act.sa_flags = SA_SIGINFO;
+//     null_act.sa_flags = SA_SIGINFO;
+
+// 	// Inicializa las estructuras sigaction
+//     sigemptyset(&active_act.sa_mask);
+//     sigemptyset(&null_act.sa_mask);
+
+//     if (sigaction(SIGUSR1, &active_act, NULL) != 0)
+//         error("[!] Signal error\n");
+//     if (sigaction(SIGUSR2, &null_act, NULL) != 0)
+//         error("[!] Signal error\n");
+
+//     print_pid();
+//     main_handler();
+// }
