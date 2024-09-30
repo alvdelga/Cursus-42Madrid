@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+#include "unistd.h"
+
 int main(void)
 {
     ft_printf("PID del Proceso: %d\n", getpid());
