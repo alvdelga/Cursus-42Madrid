@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
+#    By: leam <leam@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/30 11:56:01 by alvdelga          #+#    #+#              #
-#    Updated: 2024/09/30 11:59:30 by alvdelga         ###   ########.fr        #
+#    Updated: 2024/09/30 12:39:17 by leam             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -I../../../ft_printf/
 # Nombre del archivo fuente y ejecutable
 SRC = pid.c
 OBJ = $(SRC:.c=.o)
-EXEC = pid
+EXEC = pidpid
 
 # Biblioteca a enlazar
 LIB = ../../../ft_printf/libftprintf.a
