@@ -62,9 +62,10 @@ void	server_loop(void)
 {
 	while (1)
 	{
+		pause();
 		if (g_server.pid_client != 0)
 			send_signal_c(g_server.pid_client, 0);
-		usleep(50);
+		//usleep(50);
 	}
 }
 
@@ -91,3 +92,10 @@ int	main(int argc, char **argv)
 	server_loop();
 	return (0);
 }
+// struct sigaction {
+//     void     (*sa_handler)(int);      // Manejador de señales o SIG_IGN, SIG_DFL
+//     void     (*sa_sigaction)(int, siginfo_t *, void *); // Manejador para señales extendidas
+//     sigset_t sa_mask;                 // Señales que deben bloquearse durante la ejecución del manejador
+//     int      sa_flags;                // Opciones adicionales (SA_RESTART, SA_SIGINFO, etc.)
+//     void     (*sa_restorer)(void);    // Esta función es obsoleta en la mayoría de los sistemas
+// };
