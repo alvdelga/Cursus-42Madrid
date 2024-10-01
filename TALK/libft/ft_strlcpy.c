@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 13:15:05 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/22 13:15:15 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 16:01:20 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/22 16:30:52 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -17,13 +16,31 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 
 	i = 0;
-	if (dstsize == 0)
-		return ((size_t)ft_strlen(src));
-	while (src[i] && i < dstsize - 1)
+	if (dstsize != 0)
 	{
-		dst[i] = src[i];
+		while (src[i] != '\0' && i < dstsize - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	while (src[i] != '\0')
+	{
 		i++;
 	}
-	dst[i] = '\0';
-	return ((size_t)ft_strlen(src));
+	return (i);
 }
+/*int main(void) {
+    char src[] = "Hola Mundo";
+    char dst[20]; 
+    size_t len; 
+
+    len = ft_strlcpy(dst, src, sizeof(dst)); 
+
+    printf("%s\n", src);
+    printf("%s\n", dst);
+    printf("%zu\n", len);
+
+    return 0;
+}*/

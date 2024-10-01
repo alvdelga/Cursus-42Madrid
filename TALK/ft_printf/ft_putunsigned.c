@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:56:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/03/11 14:56:06 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/06/01 13:09:32 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/05 13:09:41 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isprint(int c)
+int	ft_putunsigned(unsigned int n, int i)
 {
-	if (c >= 32 && c < 127)
-		return (1);
-	return (0);
+	char	c;
+
+	if (n > 9)
+	{
+		i = ft_putunsigned(n / 10, i);
+	}
+	c = n % 10 + '0';
+	write(1, &c, 1);
+	i++;
+	return (i);
 }

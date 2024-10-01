@@ -3,25 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 12:21:50 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/22 12:21:59 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/11 15:32:11 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/22 16:23:10 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *str, size_t n)
 {
 	size_t	i;
-	char	*p;
 
-	p = (char *) s;
 	i = 0;
 	while (i < n)
 	{
-		p[i] = '\0';
+		((char *)str)[i] = 0;
 		i++;
 	}
 }
+/*int main()
+{
+    char array[5];
+
+    int i = 0;
+	
+	ft_bzero(array, sizeof(array));
+
+	printf("%s", array);
+
+	 while (i < sizeof(array))
+ 	 {
+   		 printf("%s", array[i]);
+   		 i++;
+ 	 }
+  return (0);
+}*/

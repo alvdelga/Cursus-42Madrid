@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 10:47:26 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/19 10:35:22 by apaterno         ###   ########.fr       */
+/*   Created: 2024/06/01 13:08:43 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/09 14:17:16 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include <unistd.h>
+
 # include <stdarg.h>
 # include <limits.h>
-# include <stdlib.h>
+# include <unistd.h>
+# include <stddef.h>
+# include <stdio.h>
 
-# define HEX_MAY "0123456789ABCDEF"
-# define HEX_MIN "0123456789abcdef"
-
-int	ft_printf(char const *s, ...);
-int	ft_putstr(char *s);
-int	ft_putchar(char c);
-int	ft_itoa(long nb);
-int	ft_ppointer(void *p, char *simbol);
-int	ft_itoa_hex(unsigned int nb, char *simbol);
-
+int				ft_putnbr_base(unsigned int nbr, char *base);
+int				ft_putstr_fd(char *s, int fd);
+int				ft_putchar_fd(char c, int fd);
+int				ft_putnbr_fd(int n, int fd, int i);
+int				ft_printf(const char *format, ...);
+int				ft_putunsigned(unsigned int n, int i);
+int				ft_memdir(void *p);
+size_t			ft_strlen(const char *str);
 #endif

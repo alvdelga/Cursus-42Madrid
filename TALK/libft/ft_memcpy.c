@@ -3,32 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 12:34:50 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/22 12:35:51 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 13:23:06 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/23 21:24:53 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stdio.h"
+#include "string.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char		*dst;
-	char		*str;
-	size_t		i;
+	unsigned const char		*s;
+	unsigned char			*d;
+	size_t					i;
 
-	if (!dest && !src)
-		return (0);
-	if (dest == src || n == 0)
-		return (dest);
-	str = (char *)src;
-	dst = (char *)dest;
+	s = ((unsigned char *)src);
+	d = ((unsigned char *)dst);
 	i = 0;
+	while (dst == src || !n)
+		return (dst);
 	while (i < n)
 	{
-		dst[i] = str[i];
+		d[i] = s[i];
 		i++;
 	}
-	return (dest);
+	return (dst);
 }
+/*int main()
+{
+  char copia[] = "Hola mundo";
+  char cadena[20];
+
+  ft_memcpy(cadena, copia, strlen(copia) + 1);
+
+  printf("%s", cadena);
+  return (0);
+}*/

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   client_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 14:04:28 by apaterno          #+#    #+#             */
-/*   Updated: 2024/07/04 14:04:33 by apaterno         ###   ########.fr       */
+/*   Created: 2024/10/01 12:37:51 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/10/01 12:37:51 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minitalk.h"
 
 void	manage_errors_c(char *error)

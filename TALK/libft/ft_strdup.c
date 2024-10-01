@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 17:18:32 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 17:18:41 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 18:32:32 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/25 16:54:00 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
 
-static void	ftstrcpy(char *dst, const char *src)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	char	*s2;
+	size_t	lens1;
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*p;
-	int		size;
-
-	size = ft_strlen(s) + 1;
-	p = (char *)malloc(sizeof(char) * size);
-	if (p == NULL)
+	lens1 = ft_strlen(s1);
+	s2 = malloc((lens1 + 1));
+	if (!s2)
 		return (NULL);
-	ftstrcpy(p, s);
-	return (p);
+	while (*s1)
+	{
+		*s2++ = *s1++;
+	}
+	*s2 = '\0';
+	return (s2 - lens1);
 }
+/*int main() {
+    const char *original = "\n\n-asfdañ;
+    char *duplicado = ft_strdup(original);
+
+    printf("Cadena duplicada: %s\n", duplicado);
+	free(duplicado);
+    return 0;
+}*/

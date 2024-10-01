@@ -1,29 +1,38 @@
-HEADER = ft_printf.h
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/01 13:09:46 by alvdelga          #+#    #+#              #
+#    Updated: 2024/09/30 11:47:58 by alvdelga         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
-CFILES = ft_printf.c\
-		 ft_putstr.c\
-		 ft_putchar.c\
-		 ft_itoa.c\
-		 ft_itoa_hex.c\
-		 ft_ppointer.c
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -rf
+AR = ar crs
 
-COBJECTS = $(CFILES:%.c=%.o)
-FLAGS = -Wall -Werror -Wextra
+NAME	=	libftprintf.a
 
-NAME = libftprintf.a
+SRC	=	ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_strlen.c \
+		ft_putnbr_fd.c ft_putunsigned.c ft_memdir.c \
 
-all : $(NAME)
+OBJS = $(SRC:.c=.o)
 
-%.o : %.c $(HEADER) Makefile
-		$(CC) $(FLAGS) -c $<  -o $@ 
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-$(NAME) : $(COBJECTS) 
-		ar -crs $@ $^
+all: $(NAME)
 
 clean:
-		rm -f $(COBJECTS)
+	$(RM) $(OBJS)
 
-fclean: clean
-		rm -f $(NAME)
+fclean:	clean
+	$(RM) $(NAME)
 
-re: fclean all
+re:	fclean all
+
+.PHONY:	all clean fclean re

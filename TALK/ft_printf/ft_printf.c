@@ -3,67 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 10:03:47 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/19 13:19:33 by apaterno         ###   ########.fr       */
+/*   Created: 2024/06/01 13:07:27 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/09 13:45:25 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printop(char o, va_list vargs, int *i)
+int	ft_format(va_list args, char *structure, int i)
 {
-	int	len;
+	int	c;
 
-	len = 0;
-	if (o == 's')
-		len = ft_putstr(va_arg(vargs, char *));
-	else if (o == 'c')
-		len = ft_putchar(va_arg(vargs, int));
-	else if (o == 'p')
-		len = ft_ppointer(va_arg(vargs, void *), HEX_MIN);
-	else if (o == 'd')
-		len = ft_itoa(va_arg(vargs, int));
-	else if (o == 'i')
-		len = ft_itoa(va_arg(vargs, int));
-	else if (o == 'u')
-		len = ft_itoa(va_arg(vargs, unsigned int));
-	else if (o == 'x')
-		len = ft_itoa_hex(va_arg(vargs, unsigned int), HEX_MIN);
-	else if (o == 'X')
-		len = ft_itoa_hex(va_arg(vargs, unsigned int), HEX_MAY);
-	else if (o == '%')
-		len = ft_putchar('%');
-	else
-		(*i)--;
-	return (len);
+	c = 0;
+	if (structure[i] == 's')
+		c = ft_putstr_fd(va_arg(args, char *), 1);
+	else if (structure[i] == 'c')
+		c = ft_putchar_fd((char)va_arg(args, int), 1);
+	else if (structure[i] == 'i' || structure[i] == 'd')
+		c = ft_putnbr_fd(va_arg(args, int), 1, 0);
+	else if (structure[i] == 'u')
+		c = ft_putunsigned(va_arg(args, unsigned int), 0);
+	else if (structure[i] == 'x')
+		c = ft_putnbr_base((unsigned int)
+				va_arg(args, int), "0123456789abcdef");
+	else if (structure[i] == 'X')
+		c = ft_putnbr_base((unsigned int)
+				va_arg(args, int), "0123456789ABCDEF");
+	else if (structure[i] == '%' && structure[i - 1] == '%')
+		c = ft_putchar_fd('%', 1);
+	else if (structure[i] == 'p')
+		c = ft_memdir(va_arg(args, void *));
+	return (c);
 }
 
-int	ft_printf(char const *s, ...)
+int	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	int		i;
-	va_list	vargs;
-	int		len;
-	int		check;
+	int	i;
 
 	i = 0;
-	len = 0;
-	va_start(vargs, s);
-	while (s[i])
+	if (nbr >= 16)
 	{
-		check = len;
-		if (s[i] == '%')
-		{
-			i++;
-			len += ft_printop(s[i], vargs, &i);
-			i++;
-		}
-		else
-			len += write(1, &s[i++], 1);
-		if (check > len)
-			return (-1);
+		i += ft_putnbr_base(nbr / 16, base);
+		i += ft_putnbr_base(nbr % 16, base);
 	}
-	va_end(vargs);
-	return (len);
+	else
+	{
+		ft_putchar_fd(base[nbr], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_in_set(char c, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i] != '\0')
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	end_percent(const char *str)
+{
+	size_t	len;
+
+	len = ft_strlen(str);
+	return (str[len - 1] == '%' && str[len - 2] != '%');
+}
+
+int	ft_printf(const char *structure, ...)
+{
+	va_list		args;
+	int			i;
+	int			lenght;
+
+	i = 0;
+	lenght = 0;
+	va_start(args, structure);
+	if (!structure)
+		return (0);
+	while (structure[i])
+	{
+		if (end_percent(structure))
+			return (-1);
+		if (structure[i] == '%' && ft_in_set(structure[i + 1], "scidXxpu%"))
+			lenght += ft_format(args, (char *)structure, ++i);
+		else
+		{
+			write(1, &structure[i], 1);
+			lenght++;
+		}
+		i++;
+	}
+	va_end(args);
+	return (lenght);
 }

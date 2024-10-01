@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:59:28 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 16:59:38 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/11 11:11:34 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/16 16:36:23 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int	i;
-	int	neg;
-	int	res;
+	long int	res;
+	int			negative;
 
-	i = 0;
-	neg = 1;
+	negative = 1;
 	res = 0;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	while (*str && (*str == ' ' || *str == '\n' || *str == '\t'
+			|| *str == '\v' || *str == '\f' || *str == '\r'))
+		++str;
+	if (*str == '-')
+		negative = -1;
+	if (*str == '-' || *str == '+')
+		++str;
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		if (nptr[i] == '-')
-			neg *= -1;
-		i++;
+		res = res * 10 + (*str - 48);
+		++str;
 	}
-	while (ft_isdigit(nptr[i]))
-	{
-		res *= 10;
-		res += nptr[i] - '0';
-		i++;
-	}
-	return (res * neg);
+	return (res * negative);
 }
+/*int		main(void)//
+{
+	char a[] = "    \n\n\v\f\r\t -5234AAAgreghrsth";// -5234
+	printf("%d\n",ft_atoi(a));//
+}*/

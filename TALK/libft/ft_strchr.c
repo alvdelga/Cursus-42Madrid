@@ -3,29 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 15:41:41 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 15:41:48 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 16:22:27 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/18 14:20:36 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <string.h>
 #include "libft.h"
 
-#include "libft.h"
-
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	int	let;
+	int	i;
 
-	let = (char)c;
-	while (*s)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*s == let)
-			return ((char *)s);
-		s++;
+		if (str[i] == (unsigned char)c && str[i] != '\0')
+		{
+			return ((char *)&str[i]);
+		}
+		i++;
 	}
-	if (let == '\0')
-		return ((char *)s);
+	if ((unsigned char)c == '\0')
+		return ((char *)&str[i]);
 	return (NULL);
 }
+/*int main()
+{
+  char s[] = "Hola que tal";
+  char c =  'l';
+  char *resultado = ft_strchr(s, c);
+  printf("%s", resultado);
+}*/

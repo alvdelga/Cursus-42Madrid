@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 17:32:22 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 17:32:29 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/15 18:21:35 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/18 14:31:49 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,43 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	char			*str;
+	char	*sub;
+	size_t	i;
 
-	i = 0;
+	if (s == NULL)
+		return (NULL);
 	if (start >= ft_strlen(s))
 	{
-		str = ft_calloc(1, sizeof(char));
-		if (!str)
-			return (NULL);
-		return (str);
+		sub = (char *)malloc(1);
+		if (sub != NULL)
+			sub[0] = '\0';
+		return (sub);
 	}
-	if (ft_strlen(s) - start < len)
+	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	str = ft_calloc(sizeof(char), len + 1);
-	if (!str)
-		return (NULL);
-	while (s[start + i] && i < len)
+	sub = (char *)malloc(len + 1);
+	if (sub != NULL)
 	{
-		str[i] = s[start + i];
-		i++;
+		i = 0;
+		while (i < len && s[start])
+			sub[i++] = s[start++];
+		sub[i] = '\0';
 	}
-	return (str);
+	else
+		return (NULL);
+	return (sub);
 }
+/*int	main(void)
+{
+	char	*str = "En un lugar de la mancha!!";
+	char	*sub;
+	unsigned int	start = 2;
+	size_t	len = 10;
+	
+	printf("len\rSTR: %zu\n", ft_strlen(str));
+
+	sub = ft_substr(str, start, len);
+
+	printf("%s\n", sub);
+ 	free(sub);
+}*/

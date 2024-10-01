@@ -3,31 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:28:35 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 16:28:40 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 18:15:49 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/22 16:08:27 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *dst, const void *str, size_t n)
 {
-	char	*src1;
-	char	*src2;
-	size_t	i;
+	unsigned char	*str2;
+	unsigned char	*dst2;
 
-	if (s1 == NULL && s2 == NULL)
-		return (0);
-	src1 = (char *)s1;
-	src2 = (char *)s2;
-	i = 0;
-	while (i < n)
-	{
-		if (src1[i] != src2[i])
-			return ((unsigned char)src1[i] - (unsigned char)src2[i]);
-		i++;
-	}
+	dst2 = (unsigned char *)dst;
+	str2 = (unsigned char *)str;
+	if (n)
+		while (n--)
+			if (*dst2++ != *str2++)
+				return (*(--dst2) - *(--str2));
 	return (0);
 }
+/*int	main()
+{
+	char dst[] = "hola";
+	char str[] = "hola";
+	size_t n = 4;
+
+	int result = ft_memcmp(dst, str, n);
+	
+	printf("%s\n", dst);
+	printf("%d\n", result);
+	return (0);
+}*/

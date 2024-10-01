@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 12:38:17 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/22 12:38:25 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/12 13:46:35 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/23 21:28:33 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <string.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *str1, const void *str2, size_t n)
 {
-	size_t	i;
+	unsigned char		*p_str1;
+	unsigned const char	*p_str2;
 
-	if (dst < src)
-	{
-		i = 0;
-		while (i < len)
-		{
-			((char *)dst)[i] = ((char *)src)[i];
-			i++;
-		}
-	}
-	else if (dst > src)
-	{
-		i = len;
-		while (i > 0)
-		{
-			((char *)dst)[i - 1] = ((char *)src)[i - 1];
-			i--;
-		}
-	}
-	return (dst);
+	p_str1 = (unsigned char *)str1;
+	p_str2 = (unsigned const char *)str2;
+	if (str1 < str2)
+		return (ft_memcpy(str1, str2, n));
+	if (!n || str1 == str2)
+		return (str1);
+	while (n--)
+		p_str1[n] = p_str2[n];
+	return (str1);
 }
+/*int main()
+{
+	char str[20];
+	char copia[] = "Hola Mundo";
+ 
+   printf("%zu\n", strlen(str));
+   printf("%zu\n", sizeof(str));
+   ft_memmove(str, copia, sizeof(copia));
+   printf("%s\n", str);
+   printf("%zu\n", strlen(str));
+   printf("%zu\n", sizeof(str));
+}*/

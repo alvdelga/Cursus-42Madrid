@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:56:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/03/11 14:56:06 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/06/05 13:09:20 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/06/05 13:09:23 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isprint(int c)
+int	ft_putstr_fd(char *s, int fd)
 {
-	if (c >= 32 && c < 127)
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+	{
+		write(fd, "(null)", 6);
+		return (6);
+	}
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	return (i);
 }

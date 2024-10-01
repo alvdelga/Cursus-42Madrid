@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   server_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 14:09:01 by apaterno          #+#    #+#             */
-/*   Updated: 2024/07/04 14:09:06 by apaterno         ###   ########.fr       */
+/*   Created: 2024/10/01 12:37:34 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/10/01 12:37:34 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minitalk.h"
 
 void	send_signal_c(int pid, int signal)

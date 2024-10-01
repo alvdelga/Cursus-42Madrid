@@ -3,44 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 17:39:08 by apaterno          #+#    #+#             */
-/*   Updated: 2024/01/24 17:39:13 by apaterno         ###   ########.fr       */
+/*   Created: 2024/03/18 17:46:36 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/18 14:34:10 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	ftstrcon(char const *s1, char const *s2, char *dst)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		dst[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		dst[i + j] = s2[j];
-		j++;
-	}
-	dst[i + j] = '\0';
-}
+#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*p;
-	int		size;
+	char	*str;
+	int		a;
+	int		b;
+	int		i;
 
-	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	p = (char *)malloc(sizeof(char) * size);
-	if (p == NULL)
+	i = 0;
+	if (!s1 || !s2)
 		return (NULL);
-	ftstrcon(s1, s2, p);
-	return (p);
+	a = ft_strlen(s1);
+	b = ft_strlen(s2);
+	str = malloc((a + b + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (a--)
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	a = i;
+	i = 0;
+	while (b--)
+		str[a++] = s2[i++];
+	str[a] = '\0';
+	return (str);
 }
+/*int	main()
+{
+	char *a = "Hola";
+	char *b = " Mundo";
+
+	char *result = ft_strjoin(a, b);
+
+	printf("%s", result);
+}*/
