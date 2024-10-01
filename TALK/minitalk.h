@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leam <leam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 13:15:55 by apaterno          #+#    #+#             */
-/*   Updated: 2024/06/14 13:16:05 by apaterno         ###   ########.fr       */
+/*   Created: 2024/10/01 00:06:19 by leam              #+#    #+#             */
+/*   Updated: 2024/10/01 00:06:19 by leam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#ifndef MINITALK_H
+# define MINITALK_H
 
 # include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "../libft/libft.h"
+# include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
 # include <signal.h>
 
 # define ERROR_1 "Signal error\n"

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leam <leam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 13:13:18 by apaterno          #+#    #+#             */
-/*   Updated: 2024/06/14 13:13:36 by apaterno         ###   ########.fr       */
+/*   Created: 2024/10/01 00:06:26 by leam              #+#    #+#             */
+/*   Updated: 2024/10/01 00:06:26 by leam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minitalk.h"
+#include "../minitalk.h"
 
 int	g_checker;
 

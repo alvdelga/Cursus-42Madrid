@@ -1,24 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: leam <leam@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/30 23:53:31 by leam              #+#    #+#              #
+#    Updated: 2024/09/30 23:53:31 by leam             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 LFAGS = -Lft_printf -lftprintf -Llibft -lft
 
 #mandatory
-HEADER = inc/minitalk.h
+HEADER = minitalk.h
 NAMEC = client
 NAMES = server
 CFILE = src/client.c\
 		src/client_utils.c
 SFILE = src/server.c\
 		src/server_utils.c
-#bonus
-HEADER_B = inc/minitalk_bonus.h
-NAMEC_B = client_bonus
-NAMES_B = server_bonus
-CFILE_B = src_bonus/client_bonus.c\
-		src_bonus/client_utils_bonus.c
-SFILE_B = src_bonus/server_bonus.c\
-		src_bonus/server_utils_bonus.c
-
 
 all: minitalk
 
@@ -30,15 +33,6 @@ $(NAMES) : $(SFILE) $(HEADER) Makefile
 $(NAMEC) : $(CFILE) $(HEADER) Makefile
 	$(CC) $(FLAGS) $(CFILE) $(HEADER) $(LFAGS)  -o $(NAMEC)
 
-bonus : minitalk_bonus
-
-minitalk_bonus : library $(NAMES_B) $(NAMEC_B) 
-
-$(NAMES_B) : $(SFILE_B) $(HEADER_B) Makefile
-	$(CC) $(FLAGS) $(SFILE) $(HEADER_B) $(LFAGS) -o $(NAMES_B)
-
-$(NAMEC_B) : $(CFILE_B) $(HEADER_B) Makefile
-	$(CC) $(FLAGS) $(CFILE_B) $(HEADER_B) $(LFAGS)  -o $(NAMEC_B)
 
 library:
 	@make -C libft
@@ -52,9 +46,7 @@ fclean:
 	make fclean -C ft_printf
 	make fclean -C libft
 	rm -f $(NAMES) $(NAMEC)
-	rm -f $(NAMES_B) $(NAMEC_B)
-	
 
 re:	fclean all
 
-.PHONY: all fclean clean re bonus library
+.PHONY: all fclean clean re library

@@ -9,7 +9,7 @@
 /*   Updated: 2024/07/04 14:04:33 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/minitalk.h"
+#include "../minitalk.h"
 
 void	manage_errors_c(char *error)
 {

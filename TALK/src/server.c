@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leam <leam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 14:17:34 by apaterno          #+#    #+#             */
-/*   Updated: 2024/07/04 14:17:40 by apaterno         ###   ########.fr       */
+/*   Created: 2024/09/30 23:58:23 by leam              #+#    #+#             */
+/*   Updated: 2024/09/30 23:58:23 by leam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/minitalk.h"
+
+#include "../minitalk.h"
 
 t_server	g_server;
 
