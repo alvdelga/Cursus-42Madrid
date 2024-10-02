@@ -27,7 +27,7 @@ void	recive_signal(int sig, siginfo_t *info, void *context)
 	}
 	else if (sig == SIGUSR2 && connected)
 	{
-		ft_printf("[+] Message delivered. Connection finished.\n");
+		ft_printf("[+] Done! Message received.\n");
 		exit(EXIT_SUCCESS);
 	}
 	else if (sig == SIGUSR2 && !connected)
@@ -73,15 +73,15 @@ static void	client_loop(int pid, char *str)
 
 int	main(int argc, char **argv)
 {
-	struct sigaction	sa;
+	struct sigaction	s_sa;
 
-	sa.sa_sigaction = &recive_signal;
-	sa.sa_flags = SA_SIGINFO;
-	if (sigemptyset(&sa.sa_mask) != 0)
+	s_sa.sa_sigaction = &recive_signal;
+	s_sa.sa_flags = SA_SIGINFO;
+	if (sigemptyset(&s_sa.sa_mask) != 0)
 		manage_errors_c(ERROR_1);
-	if (sigaction(SIGUSR1, &sa, NULL) != 0)
+	if (sigaction(SIGUSR1, &s_sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
-	if (sigaction(SIGUSR2, &sa, NULL) != 0)
+	if (sigaction(SIGUSR2, &s_sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
 	if (argc == 3)
 	{

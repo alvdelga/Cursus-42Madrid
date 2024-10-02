@@ -18,13 +18,14 @@
 # include "libft/libft.h"
 # include <signal.h>
 
-# define ERROR_1 "[!] Signal error\n"
-# define ERROR_2 "[!] Arguments errors\n"
-# define ERROR_3 "[!] PID error\n"
-# define ERROR_4 "[!] Connection error\n"
-# define ERROR_5 "[!] Empty string\n"
-# define ERROR_6 "[!] Server busy. Try later\n"
-# define ERROR_7 "\n[!] Connection error\n"
+# define ERROR_1 "[!] Failed to send signal\n"
+# define ERROR_2 "[!] Invalid arguments\n"
+# define ERROR_3 "[!] Incorrect PID\n"
+# define ERROR_4 "[!] Failed to communicate with server\n"
+# define ERROR_5 "[!] String is empty\n"
+# define ERROR_6 "[!] Server is busy. Please retry later\n"
+# define ERROR_7 "[!] Failed to communicate with server\n"
+
 
 typedef struct s_server
 {
