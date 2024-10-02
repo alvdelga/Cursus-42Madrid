@@ -98,3 +98,36 @@ int	main(int argc, char **argv)
 //     int      sa_flags;                // Opciones adicionales (SA_RESTART, SA_SIGINFO, etc.)
 //     void     (*sa_restorer)(void);    // Esta función es obsoleta en la mayoría de los sistemas
 // };
+
+// #include <signal.h>
+
+// int sigemptyset(sigset_t *set)
+// {
+//     if (set == NULL)
+//     {
+//         return -1;  // Error si el puntero es NULL
+//     }
+
+//     *set = 0;  // Inicializa el conjunto de señales como vacío
+//     return 0;  // Éxito
+// }
+
+// #include <signal.h>
+
+// int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+// {
+//     if (signum < 1 || signum >= NSIG || act == NULL)
+//     {
+//         return -1;  // Error si el número de señal es inválido o el puntero es NULL
+//     }
+
+//     // Aquí se simularía la configuración del manejador de la señal en el sistema
+//     if (oldact != NULL)
+//     {
+//         *oldact = signal_handlers[signum];  // Guarda el manejador anterior
+//     }
+
+//     signal_handlers[signum] = *act;  // Establece el nuevo manejador para la señal
+
+//     return 0;  // Éxito
+// }
