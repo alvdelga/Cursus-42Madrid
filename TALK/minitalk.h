@@ -38,8 +38,8 @@ void	manage_errors_c(char *error);
 void	send_signal_s(int pid, int signal);
 void	check_arg(char *arg_1, char *arg_2);
 //server
-void	send_signal_c(int pid, int signal);
-void	init_server(void);
+void	send_signal_client(int pid, int signal);
+void	start_server(void);
 void	manage_errors_s(char *error);
 void	reset_server(char *error);
 

@@ -14,7 +14,7 @@
 
 t_server	g_server;
 
-void	init_server(void)
+void	start_server(void)
 {
 	g_server.bit = 0;
 	g_server.chr = 0;
@@ -22,7 +22,7 @@ void	init_server(void)
 	g_server.pid_client = 0;
 }
 
-void	print_bits(int sig, siginfo_t *info, void *context)
+void	print_byte(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
 	if (sig == SIGUSR1)
@@ -33,8 +33,8 @@ void	print_bits(int sig, siginfo_t *info, void *context)
 		if (g_server.chr == '\0')
 		{
 			ft_printf("\nClient message %d received\n", g_server.pid_client);
-			send_signal_c(g_server.pid_client, SIGUSR2);
-			init_server();
+			send_signal_client(g_server.pid_client, SIGUSR2);
+			start_server();
 		}
 		ft_printf("%c", g_server.chr);
 		g_server.bit = 0;
@@ -44,7 +44,7 @@ void	print_bits(int sig, siginfo_t *info, void *context)
 	kill(info->si_pid, SIGUSR1);
 }
 
-void	client_conections(int sig, siginfo_t *info, void *context)
+void	process_client_signal(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
 	if (g_server.pid_client == 0)
@@ -53,43 +53,42 @@ void	client_conections(int sig, siginfo_t *info, void *context)
 		g_server.transmiting = 1;
 	}
 	else if (g_server.pid_client != info->si_pid && g_server.transmiting)
-		send_signal_c(info->si_pid, SIGUSR2);
+		send_signal_client(info->si_pid, SIGUSR2);
 	if (g_server.pid_client == info->si_pid && g_server.transmiting)
-		print_bits(sig, info, context);
+		print_byte(sig, info, context);
 }
 
-void	server_loop(void)
+void	signal_wait_loop(void)
 {
 	while (1)
 	{
 		pause();
 		if (g_server.pid_client != 0)
-			send_signal_c(g_server.pid_client, 0);
+			send_signal_client(g_server.pid_client, 0);
 		//usleep(50);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	struct sigaction	sa;
+	struct sigaction	s_sa;
 	int					pid;
-	int					check;
-
+	
 	(void)argv;
 	pid = getpid();
-	sa.sa_sigaction = &client_conections;
+	s_sa.sa_sigaction = &process_client_signal;
+	s_sa.sa_flags = SA_SIGINFO;
 	if (argc != 1)
 		manage_errors_s(ERROR_2);
-	if ((sigemptyset(&sa.sa_mask) != 0))
+	if ((sigemptyset(&s_sa.sa_mask) != 0))
 		manage_errors_s(ERROR_1);
-	sa.sa_flags = SA_SIGINFO;
-	if ((sigaction(SIGUSR1, &sa, NULL) != 0))
+	if ((sigaction(SIGUSR1, &s_sa, NULL) != 0))
 		manage_errors_s(ERROR_1);
-	if ((sigaction(SIGUSR2, &sa, NULL) != 0))
+	if ((sigaction(SIGUSR2, &s_sa, NULL) != 0))
 		manage_errors_s(ERROR_1);
-	ft_printf("pid: %d\n", pid);
-	init_server();
-	server_loop();
+	ft_printf("[+] Your pid is: %d\n", pid);
+	start_server();
+	signal_wait_loop();
 	return (0);
 }
 // struct sigaction {

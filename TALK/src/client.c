@@ -12,7 +12,7 @@
 
 #include "../minitalk.h"
 
-int	g_checker;
+int	g_signal_received;
 
 void	recive_signal(int sig, siginfo_t *info, void *context)
 {
@@ -22,7 +22,7 @@ void	recive_signal(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (sig == SIGUSR1)
 	{
-		g_checker = 1;
+		g_signal_received = 1;
 		connected = 1;
 	}
 	else if (sig == SIGUSR2 && connected)
@@ -44,13 +44,13 @@ void	send_to_server(int pid, char c)
 	bit = 0;
 	while (bit < 8)
 	{
-		g_checker = 0;
+		g_signal_received = 0;
 		if (c & (0x01 << bit))
 			send_signal_s(pid, SIGUSR1);
 		else
 			send_signal_s(pid, SIGUSR2);
 		bit++;
-		while (g_checker != 1)
+		while (g_signal_received != 1)
 		{
 			usleep(100);
 			send_signal_s(pid, 0);
@@ -77,11 +77,11 @@ int	main(int argc, char **argv)
 
 	sa.sa_sigaction = &recive_signal;
 	sa.sa_flags = SA_SIGINFO;
-	if (sigemptyset(&sa.sa_mask) == -1)
+	if (sigemptyset(&sa.sa_mask) != 0)
 		manage_errors_c(ERROR_1);
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+	if (sigaction(SIGUSR1, &sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
-	if (sigaction(SIGUSR2, &sa, NULL) == -1)
+	if (sigaction(SIGUSR2, &sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
 	if (argc == 3)
 	{

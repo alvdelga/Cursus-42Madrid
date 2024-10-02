@@ -12,7 +12,7 @@
 
 #include "../minitalk.h"
 
-void	send_signal_c(int pid, int signal)
+void	send_signal_client(int pid, int signal)
 {
 	int	sig;
 
@@ -24,7 +24,7 @@ void	send_signal_c(int pid, int signal)
 void	reset_server(char *error)
 {
 	ft_putstr_fd(error, 2);
-	init_server();
+	start_server();
 }
 
 void	manage_errors_s(char *error)
