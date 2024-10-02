@@ -30,10 +30,12 @@ void	send_signal_s(int pid, int signal)
 void	check_arg(char *arg_1, char *arg_2)
 {
 	int	i;
+	long pid;
 
 	if (arg_2[0] == '\0')
 		manage_errors_c(ERROR_5);
-	if (ft_atoi(arg_1) <= 0)
+	pid = ft_atoi(arg_1);
+	if (pid <= 0 || pid >= 99999999)
 		manage_errors_c(ERROR_3);
 	i = 0;
 	while (arg_1[i])
@@ -43,3 +45,21 @@ void	check_arg(char *arg_1, char *arg_2)
 		i++;
 	}
 }
+
+
+// void	check_arg(char *arg_1, char *arg_2)
+// {
+// 	int	i;
+
+// 	if (arg_2[0] == '\0')
+// 		manage_errors_c(ERROR_5);
+// 	if (ft_atoi(arg_1) <= 0 || ft_atoi(arg_1) >= 99999999)
+// 		manage_errors_c(ERROR_3);
+// 	i = 0;
+// 	while (arg_1[i])
+// 	{
+// 		if (!ft_isdigit(arg_1[i]))
+// 			manage_errors_c(ERROR_3);
+// 		i++;
+// 	}
+// }

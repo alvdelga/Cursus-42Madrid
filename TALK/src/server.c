@@ -78,6 +78,7 @@ int	main(int argc, char **argv)
 	pid = getpid();
 	s_sa.sa_sigaction = &process_client_signal;
 	s_sa.sa_flags = SA_SIGINFO;
+	sigaddset(&s_sa.sa_mask, SIGINT);
 	if (argc != 1)
 		manage_errors_s(ERROR_2);
 	if ((sigemptyset(&s_sa.sa_mask) != 0))

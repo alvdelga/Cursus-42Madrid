@@ -71,6 +71,12 @@ static void	client_loop(int pid, char *str)
 	send_to_server(pid, '\0');
 }
 
+void	ignore_sigint(int sig)
+{
+	(void)sig;
+	printf(" [!] SIGINT blocked, use Ctrl + Z\n");
+}
+
 int	main(int argc, char **argv)
 {
 	struct sigaction	s_sa;
@@ -82,6 +88,11 @@ int	main(int argc, char **argv)
 	if (sigaction(SIGUSR1, &s_sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
 	if (sigaction(SIGUSR2, &s_sa, NULL) != 0)
+		manage_errors_c(ERROR_1);
+	struct sigaction	sigint_sa;
+	sigint_sa.sa_handler = &ignore_sigint;
+	sigint_sa.sa_flags = 0;
+	if (sigaction(SIGINT, &sigint_sa, NULL) != 0)
 		manage_errors_c(ERROR_1);
 	if (argc == 3)
 	{
