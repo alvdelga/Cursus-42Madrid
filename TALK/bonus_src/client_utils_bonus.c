@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_utils.c                                     :+:      :+:    :+:   */
+/*   client_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 12:37:51 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/10/01 12:37:51 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/10/04 09:41:21 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/10/04 09:41:21 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "../minitalk.h"
 
 void	manage_errors_c(char *error)
 {

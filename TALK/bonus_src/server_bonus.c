@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 12:37:23 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/10/01 12:37:23 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/10/04 09:41:30 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/10/04 09:41:30 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "../minitalk.h"
 
 t_server	g_server;
 
@@ -62,10 +62,10 @@ void	signal_wait_loop(void)
 {
 	while (1)
 	{
-		pause();
+		// pause();
 		if (g_server.pid_client != 0)
 			send_signal_client(g_server.pid_client, 0);
-		//usleep(50);
+		usleep(50);
 	}
 }
 

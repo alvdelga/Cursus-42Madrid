@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_utils.c                                     :+:      :+:    :+:   */
+/*   server_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 12:37:34 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/10/01 12:37:34 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/10/04 09:41:38 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/10/04 09:41:38 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "../minitalk.h"
 
 void	send_signal_client(int pid, int signal)
 {
