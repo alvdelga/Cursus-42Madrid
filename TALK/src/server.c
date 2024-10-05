@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk_bonus.h"
+#include "../minitalk.h"
 
 t_server	g_server;
 

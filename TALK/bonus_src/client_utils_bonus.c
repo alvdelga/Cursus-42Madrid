@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../minitalk_bonus.h"
 
 void	manage_errors_c(char *error)
 {

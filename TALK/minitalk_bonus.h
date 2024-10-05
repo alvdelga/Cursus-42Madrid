@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 09:36:04 by alvdelga          #+#    #+#             */
-/*   Updated: 2024/10/04 09:42:03 by alvdelga         ###   ########.fr       */
+/*   Updated: 2024/10/05 09:11:19 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ERROR_4 "[!] Failed to communicate with server\n"
 # define ERROR_5 "[!] String is empty\n"
 # define ERROR_6 "[!] Server is busy. Please retry later\n"
-# define ERROR_7 "[!] Failed to communicate with server\n"
+# define ERROR_7 "[!] Failed to communicate with client\n"
 
 
 typedef struct s_server
@@ -38,7 +38,7 @@ typedef struct s_server
 void	manage_errors_c(char *error);
 void	send_signal_s(int pid, int signal);
 void	check_arg(char *arg_1, char *arg_2);
-//server
+
 void	send_signal_client(int pid, int signal);
 void	start_server(void);
 void	manage_errors_s(char *error);

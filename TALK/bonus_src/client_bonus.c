@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../minitalk_bonus.h"
 
 int	g_signal_received;
 

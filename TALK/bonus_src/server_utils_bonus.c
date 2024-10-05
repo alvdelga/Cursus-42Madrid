@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../minitalk_bonus.h"
 
 void	send_signal_client(int pid, int signal)
 {
