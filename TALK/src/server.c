@@ -32,7 +32,8 @@ void	print_byte(int sig, siginfo_t *info, void *context)
 	{
 		if (g_server.chr == '\0')
 		{
-			ft_printf("\n[+] Done! Message received from client: %d)\n", g_server.pid_client);
+			ft_printf("\n\n[+] Done! Message received\n");
+			ft_printf("[+] Client_pid => %d\n\n", g_server.pid_client);
 			send_signal_client(g_server.pid_client, SIGUSR2);
 			start_server();
 		}
@@ -87,7 +88,7 @@ int	main(int argc, char **argv)
 		manage_errors_s(ERROR_1);
 	if ((sigaction(SIGUSR2, &s_sa, NULL) != 0))
 		manage_errors_s(ERROR_1);
-	ft_printf("[+] Take my Pid: %d\n", pid);
+	ft_printf("[+] Take my Pid: %d\n\n", pid);
 	start_server();
 	signal_wait_loop();
 	return (0);

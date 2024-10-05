@@ -20,6 +20,8 @@ void	recive_signal(int sig, siginfo_t *info, void *context)
 
 	(void)info;
 	(void)context;
+	int pid;
+	pid = getpid();
 	if (sig == SIGUSR1)
 	{
 		g_signal_received = 1;
@@ -27,7 +29,8 @@ void	recive_signal(int sig, siginfo_t *info, void *context)
 	}
 	else if (sig == SIGUSR2 && connected)
 	{
-		ft_printf("[+] Done! Message received.\n");
+		ft_printf("[+] Done! Message sent.\n");
+		ft_printf("[+] My Pid => %d\n", pid);
 		exit(EXIT_SUCCESS);
 	}
 	else if (sig == SIGUSR2 && !connected)
