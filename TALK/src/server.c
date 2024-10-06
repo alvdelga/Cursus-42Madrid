@@ -26,7 +26,7 @@ void	print_byte(int sig, siginfo_t *info, void *context)
 {
 	(void)context;
 	if (sig == SIGUSR1)
-		g_server.chr |= (0x01 << g_server.bit);
+		g_server.chr |= (1 << g_server.bit);
 	g_server.bit++;
 	if (g_server.bit == 8)
 	{

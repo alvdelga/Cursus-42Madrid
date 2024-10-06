@@ -48,7 +48,7 @@ void	send_to_server(int pid, char c)
 	while (bit < 8)
 	{
 		g_signal_received = 0;
-		if (c & (0x01 << bit))
+		if (c & (1 << bit))
 			send_signal_s(pid, SIGUSR1);
 		else
 			send_signal_s(pid, SIGUSR2);
