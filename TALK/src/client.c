@@ -103,6 +103,6 @@ int	main(int argc, char **argv)
 		client_loop(ft_atoi(argv[1]), argv[2]);
 	}
 	else
-		manage_errors_c(ERROR_2);
+		manage_errors_c(ERROR_8);
 	return (0);
 }
