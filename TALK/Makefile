@@ -38,9 +38,11 @@ minitalk : library $(NAMES) $(NAMEC)
 
 $(NAMES) : $(SFILE) $(HEADER)
 	$(CC) $(FLAGS) $(SFILE) $(HEADER) $(LFAGS) -o $(NAMES)
+	@printf "\e[38;5;33m✔️ ./$@ successfully built\e[0m\n"
 
 $(NAMEC) : $(CFILE) $(HEADER)
 	$(CC) $(FLAGS) $(CFILE) $(HEADER) $(LFAGS)  -o $(NAMEC)
+	@printf "\e[38;5;196m🔥 ./$@ successfully built\e[0m\n"
 
 bonus : minitalk_bonus
 
@@ -55,16 +57,17 @@ $(NAMEC_B) : $(CFILE_B) $(HEADER_B)
 library:
 	@make -C libft
 	@make -C ft_printf
-
 clean:
 	make clean -C ft_printf
 	make clean -C libft
+	@printf "\e[38;5;46m💥 .o files deleted\e[0m\n"
 
 fclean:
 	make fclean -C ft_printf
 	make fclean -C libft
 	rm -f $(NAMES) $(NAMEC)
 	rm -f $(NAMES_B) $(NAMEC_B)
+	@printf "\e[38;5;226m🧹 Binaries and .o deleted\e[0m\n"
 	
 
 re:	fclean all
