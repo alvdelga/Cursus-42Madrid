@@ -1,1 +1,1 @@
-![server](server.webp)
+![server](/img/server.webp)
