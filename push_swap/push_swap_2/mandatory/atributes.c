@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atributes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:05:04 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/04/22 15:53:38 by miguelgo         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:16:16 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

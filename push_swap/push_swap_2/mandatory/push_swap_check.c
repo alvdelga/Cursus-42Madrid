@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:29:09 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/04/22 15:52:37 by miguelgo         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:16:50 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

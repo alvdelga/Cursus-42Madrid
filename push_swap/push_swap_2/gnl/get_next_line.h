@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 15:38:56 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/04/18 20:03:07 by miguelgo         ###   ########.fr       */
+/*   Created: 2024/03/12 16:01:20 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/04/22 16:30:52 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef  GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 482
+#  define  BUFFER_SIZE 41
 # endif
 
 # include <unistd.h>
-# include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>//malloc, free
+# include <stdint.h>
+# include <stddef.h>//NULL
+# include <fcntl.h>//open
 
-char			*get_next_line(int fd);
-void			ft_bzero(void *s, size_t n);
-void			*ft_calloc(size_t count, size_t size);
-char			*ft_strchr(char *s, int c);
-unsigned long	ft_strlenn(char *s);
-char			*ft_strjoin(char *s1, char *s2);
-char			*res_file(char *res);
-char			*read_file(int fd, char *res);
-char			*make_line(char *res);
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *str, int c);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

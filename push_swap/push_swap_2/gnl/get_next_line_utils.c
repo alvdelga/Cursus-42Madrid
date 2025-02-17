@@ -3,77 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelgo <miguelgo@student.42madrid>       +#+  +:+       +#+        */
+/*   By: alvdelga <alvdelga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 15:26:01 by miguelgo          #+#    #+#             */
-/*   Updated: 2024/04/18 20:02:56 by miguelgo         ###   ########.fr       */
+/*   Created: 2024/03/12 16:01:20 by alvdelga          #+#    #+#             */
+/*   Updated: 2024/05/07 18:50:20 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n);
-
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*join;
+	char	*str;
+	int		a;
+	int		b;
 	int		i;
-	int		k;
 
 	i = 0;
-	k = 0;
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
-	join = (char *)malloc((sizeof(*s1)
-				* ((ft_strlenn(s1)) + ft_strlenn(s2) + 1)));
-	if (!join)
+	a = ft_strlen(s1);
+	b = ft_strlen(s2);
+	str = malloc((a + b + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
-	while (s1[i] != '\0')
+	while (a--)
 	{
-		join[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
-	while (s2[k] != '\0')
-	{
-		join[i] = s2[k];
-		i++;
-		k++;
-	}
-	return (join[i] = '\0', join);
+	a = i;
+	i = 0;
+	while (b--)
+		str[a++] = s2[i++];
+	str[a] = '\0';
+	return (str);
 }
 
-unsigned long int	ft_strlenn(char *s)
+void	ft_bzero(void *str, size_t n)
 {
-	unsigned long int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	unsigned long int	i;
-
-	i = 0;
-	while (s[i] != c && s[i] != '\0')
-		i++;
-	if (s[i] == c)
-		return (s);
-	return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*a;
-
-	i = 0;
-	a = (unsigned char *)s;
 	while (i < n)
 	{
-		a[i] = 0;
+		((char *)str)[i] = 0;
 		i++;
 	}
 }
@@ -82,9 +56,36 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*result;
 
+	if (size != 0 && count > SIZE_MAX / size)
+		return (NULL);
 	result = malloc(count * size);
 	if (!result)
-		return (0);
-	ft_bzero(result, count * size);
-	return (result);
+	{
+		free(result);
+		result = (void *) '\0';
+		return (NULL);
+	}
+	else
+	{
+		ft_bzero(result, (count * size));
+		return (result);
+	}
+}
+
+char	*ft_strchr(const char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == (unsigned char)c && str[i] != '\0')
+		{
+			return ((char *)&str[i]);
+		}
+		i++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)&str[i]);
+	return (NULL);
 }
