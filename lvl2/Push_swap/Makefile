@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 18:43:05 by alvdelga          #+#    #+#              #
-#    Updated: 2025/02/18 08:31:06 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/02/18 12:02:45 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,22 @@ NAME1 = push_swap
 MANDATORY = mandatory/
 GNL = gnl/
 
-SRC1 = $(MANDATORY)atributes.c $(MANDATORY)last_three.c $(MANDATORY)push.c $(MANDATORY)push_swap.c $(MANDATORY)push_swap_check.c $(MANDATORY)push_swap_utils.c $(MANDATORY)rotate.c $(MANDATORY)rotate2.c $(MANDATORY)start.c $(MANDATORY)ft_split.c $(MANDATORY)move_to_a.c $(MANDATORY)sort.c $(MANDATORY)swap.c
+SRC_FILES = atributes.c \
+            last_three.c \
+            push.c \
+            push_swap.c \
+            push_swap_check.c \
+            push_swap_utils.c \
+            rotate.c \
+            rotate2.c \
+            start.c \
+            ft_split.c \
+            move_to_a.c \
+            sort.c \
+            swap.c
 
-OBJ1 = $(SRC1:.c=.o)
+SRC = $(addprefix $(MANDATORY), $(SRC_FILES))
+OBJ1 = $(SRC:.c=.o)
 
 all: $(NAME1)
 
