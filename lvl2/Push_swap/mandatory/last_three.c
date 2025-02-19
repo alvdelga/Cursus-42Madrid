@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/18 08:34:13 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/19 07:01:22 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,25 @@ long *initialize(int argc, char *argv[])
 {
     long *numbers;
 
+    if (argc < 2) 
+    {
+        write(2, "[!] Error\n", 9);
+        return NULL;
+    }
     if (argc == 1)
     {
-        write(2, "Error\n", 6);
+        write(2, "[!] Error\n", 9);
         return NULL;
     }
     numbers = start(argc, argv);
     if (!numbers)
     {
-        write(2, "Error\n", 6);
+        write(2, "[!] Error\n", 9);
         return NULL;
     }
     if (!check_duplicates(numbers))
     {
-        write(2, "Error\n", 6);
+        write(2, "[!] Error\n", 9);
         free(numbers);
         return NULL;
     }

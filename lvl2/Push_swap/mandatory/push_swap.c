@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:45:16 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/18 08:34:39 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/19 07:09:03 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	main(int argc, char *argv[])
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || argv[1][0] == '\0')
+	{
+		write(2, "Error: missing arguments\n", 25);
 		return (0);
+	}
 	numbers = initialize(argc, argv);
 	if (!numbers)
 		return (0);
 	while (numbers[i] != LONG_MAX)
-	{
-		fill_stack(&a, numbers[i]);
-		i++;
-	}
+		fill_stack(&a, numbers[i++]);
 	free(numbers);
 	if (!(check_sort(&a)))
 		sort(&a, &b);
