@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:17:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/18 08:34:48 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:29:35 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,3 @@ void	read_lines(t_stack **a_bonus, t_stack **b_bonus);
 void	last_check(t_stack **a);
 
 #endif
-
