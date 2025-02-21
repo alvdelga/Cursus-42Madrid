@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:45:16 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/21 11:28:03 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:16:43 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	main(int argc, char *argv[])
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || argv[1][0] == '\0')
-	{
-		write(2, "[!] Error: missing arguments\n", 29);
 		return (0);
-	}
 	numbers = initialize(argc, argv);
 	if (!numbers)
 		return (0);

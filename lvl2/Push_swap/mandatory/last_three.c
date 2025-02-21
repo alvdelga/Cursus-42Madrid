@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/20 12:54:16 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:32:45 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,28 @@ long *initialize(int argc, char *argv[])
 
     if (argc < 2) 
     {
-        write(2, "[!] Error\n", 10);
+        write(2, "Error\n", 6);
         return NULL;
     }
     if (argc == 1)
     {
-        write(2, "[!] Error\n", 10);
+        write(2, "Error\n", 6);
         return NULL;
     }
     numbers = start(argc, argv);
     if (!numbers)
     {
-        write(2, "[!] Error\n", 10);
+        write(2, "Error\n", 6);
         return NULL;
     }
     if (!check_duplicates(numbers))
     {
-        write(2, "[!] Error\n", 10);
+        write(2, "Error\n", 6);
         free(numbers);
         return NULL;
     }
     return numbers;
 }
-
 // Libera la memoria de un array de strings
 long *free_numbers(char **numbers, int argc)
 {

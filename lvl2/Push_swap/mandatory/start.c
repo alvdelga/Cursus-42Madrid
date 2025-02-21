@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:18:12 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/21 12:02:35 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:02:57 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	fill_stack(t_stack **stack, int number)
 
 	last = (t_stack *)malloc(sizeof(t_stack));
 	if (!last)
-		return (0);
+		return ;
 	last->number = number;
 	last->next = NULL;
 	if (!(*stack))
