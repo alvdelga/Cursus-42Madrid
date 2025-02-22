@@ -6,43 +6,13 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:45:16 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/21 19:56:35 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:17:30 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "push_swap.h"
-/*
-int	main(int argc, char *argv[])
-{
-	long	*numbers;
-	int		i;
-	t_stack	*a;
-	t_stack	*b;
-
-	i = 0;
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || argv[1][0] == '\0')
-		return (0);
-	numbers = initialize(argc, argv);
-	if (!numbers)
-		return (0);
-	while (numbers[i] != LONG_MAX)
-		fill_stack(&a, numbers[i++]);
-	free(numbers);
-	if (!(check_sort(&a)))
-		sort(&a, &b);
-	free_stack(&a);
-	return (0);
-}
-*/
-
 #include "push_swap.h"
 
-int	validate_args(int argc, char *argv[])
+int	validate_args(int argc, char **argv)
 {
 	int	j;
 	
@@ -59,7 +29,7 @@ int	validate_args(int argc, char *argv[])
 	return (0);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	long	*numbers;
 	int		i;
@@ -87,5 +57,30 @@ int	main(int argc, char *argv[])
 	free_stack(&a);
 	return (0);
 }
+/*
+int	main(int argc, char *argv[])
+{
+	long	*numbers;
+	int		i;
+	t_stack	*a;
+	t_stack	*b;
+
+	i = 0;
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || argv[1][0] == '\0')
+		return (0);
+	numbers = initialize(argc, argv);
+	if (!numbers)
+		return (0);
+	while (numbers[i] != LONG_MAX)
+		fill_stack(&a, numbers[i++]);
+	free(numbers);
+	if (!(check_sort(&a)))
+		sort(&a, &b);
+	free_stack(&a);
+	return (0);
+}
+*/
 
 

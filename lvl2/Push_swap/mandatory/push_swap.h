@@ -6,18 +6,19 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:17:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/21 11:29:35 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:19:07 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stddef.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdbool.h>
+# include <stddef.h>   // Define tipos estándar como size_t, ptrdiff_t y NULL
+# include <stdio.h>    // Proporciona funciones de entrada y salida estándar como printf y scanf
+# include <stdlib.h>   // Contiene funciones para la gestión de memoria, conversión de tipos y control de procesos (malloc, free, atoi, exit)
+# include <unistd.h>   // Proporciona funciones de bajo nivel para interactuar con el sistema operativo (write, read, sleep, fork)
+# include <limits.h>   // Define constantes con los valores límites de los tipos de datos primitivos (INT_MAX, INT_MIN, CHAR_BIT)
+# include <stdbool.h>  // Define los valores booleanos true y false
+# include <string.h>   // Proporciona funciones para manipular arrays de caracteres (memset, memcpy, memmove)
 
 typedef struct s_stack
 {
@@ -109,13 +110,5 @@ void	swap(t_stack **stack);
 void	sa(t_stack **a, int c);
 void	sb(t_stack **b, int c);
 void	ss(t_stack **a, t_stack **b, int c);
-
-// BONUS
-// bonus_utils.c
-int		ft_strncmp(char *s1, char *s2, int n);
-void	execute_operation(t_stack **a_bonus, t_stack **b_bonus, char *str);
-int		valid_operation(char *str);
-void	read_lines(t_stack **a_bonus, t_stack **b_bonus);
-void	last_check(t_stack **a);
 
 #endif

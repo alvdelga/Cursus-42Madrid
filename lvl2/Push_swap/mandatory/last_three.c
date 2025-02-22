@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/21 19:30:59 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:13:59 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,10 @@ int number_list(char **list)
 }
 
 // Inicializa el array de números
-long *initialize(int argc, char *argv[])
+long *initialize(int argc, char **argv)
 {
     long *numbers;
-
-    if (argc < 2) 
-    {
-        write(2, "Error\n", 6);
-        return NULL;
-    }
-    if (argc == 1)
-    {
-        write(2, "Error\n", 6);
-        return NULL;
-    }
+	
     numbers = start(argc, argv);
     if (!numbers)
     {
