@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:17:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/22 23:54:34 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/23 19:41:08 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_stack
 	struct s_stack	*objetive;
 }	t_stack;
 
-// atributes.c
+// move_to_b.c
 void	update_position(t_stack *stack);
 t_stack	*max_number(t_stack *b);
 void	calculate_cost(t_stack *a, t_stack *b);

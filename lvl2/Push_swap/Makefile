@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 18:43:05 by alvdelga          #+#    #+#              #
-#    Updated: 2025/02/18 22:23:17 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/02/23 19:41:15 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME1 = push_swap
 MANDATORY = mandatory/
 GNL = gnl/
 
-SRC_FILES = atributes.c \
+SRC_FILES = move_to_b.c \
             last_three.c \
             push.c \
             push_swap.c \
