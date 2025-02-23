@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 20:29:09 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/18 08:34:24 by alvdelga         ###   ########.fr       */
+/*   Created: 2024/03/11 11:11:34 by alvdelga          #+#    #+#             */
+/*   Updated: 2025/02/23 09:20:33 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,24 @@ int	ft_str_is_numeric(char str)
 
 long	ft_atoi(const char *str)
 {
-	int		i;
-	long	result;
-	int		sign;
+	long		res;
+	int			negative;
 
-	sign = 0;
-	i = 0;
-	result = 0;
-	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\t'
-		|| str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '-')
-		sign = 1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	negative = 1;
+	res = 0;
+	while (*str && (*str == ' ' || *str == '\n' || *str == '\t'
+			|| *str == '\v' || *str == '\f' || *str == '\r'))
+		++str;
+	if (*str == '-')
+		negative = -1;
+	if (*str == '-' || *str == '+')
+		++str;
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		result = result * 10 + (str[i] - '0');
-		i++;
+		res = res * 10 + (*str - 48);
+		++str;
 	}
-	if (sign == 1)
-		result = result * -1;
-	return (result);
+	return (res * negative);
 }
 
 t_stack	*get_cheapest(t_stack **stack)
