@@ -6,19 +6,19 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:17:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/23 19:41:08 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:27:50 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stddef.h>   // Define tipos estándar como size_t, ptrdiff_t y NULL
-# include <stdio.h>    // Proporciona funciones de entrada y salida estándar como printf y scanf
-# include <stdlib.h>   // Contiene funciones para la gestión de memoria, conversión de tipos y control de procesos (malloc, free, atoi, exit)
-# include <unistd.h>   // Proporciona funciones de bajo nivel para interactuar con el sistema operativo (write, read, sleep, fork)
-# include <limits.h>   // Define constantes con los valores límites de los tipos de datos primitivos (INT_MAX, INT_MIN, CHAR_BIT)
-# include <stdbool.h>  // Define los valores booleanos true y false
-# include <string.h>   // Proporciona funciones para manipular arrays de caracteres (memset, memcpy, memmove)
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <stdbool.h>
+# include <string.h>
 
 typedef struct s_stack
 {
