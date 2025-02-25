@@ -1,6 +1,0 @@
-----------------8<-------------[ START TEST 
-        💻 TEST
-./a.out "hello World"         🔎 YOUR OUTPUT:
-        🗝 EXPECTED OUTPUT:
-ft_strdup("hello World") = hello World$
-----------------8<------------- END TEST ]
