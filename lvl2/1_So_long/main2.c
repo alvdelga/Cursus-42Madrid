@@ -1,8 +1,8 @@
 #include <mlx.h>
 #include <stdio.h>
 
-#define WIDTH 1800
-#define HEIGHT 1000
+#define WIDTH 800
+#define HEIGHT 900
 
 int	main(void)
 {
@@ -33,7 +33,7 @@ int	main(void)
 	}
 
 	// Carga otra imagen (sprite) para poner encima del fondo
-	sprite = mlx_xpm_file_to_image(mlx, "../LONG3/sprites/item.xpm", &sprite_width, &sprite_height);
+	sprite = mlx_xpm_file_to_image(mlx, "player.xpm", &sprite_width, &sprite_height);
 	if (!sprite)
 	{
 		printf("Error: No se pudo cargar la imagen superior\n");
