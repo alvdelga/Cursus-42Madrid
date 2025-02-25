@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 18:43:05 by alvdelga          #+#    #+#              #
-#    Updated: 2025/02/24 11:02:35 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/02/24 11:42:08 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,11 +81,5 @@ test1000:			$(NAME)
 					./push_swap $(ARG) | ./checker_linux $(ARG)
 					@echo -n "Instructions: "
 					@./push_swap $(ARG) | wc -l
-
-test5000:			$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 5000))
-					./push_swap $(ARG) | ./checker_linux $(ARG)
-					@echo -n "Instructions: "
-					@./push_swap $(ARG) | wc -l		
 
 .PHONY: all clean fclean re test2 test3 test5 test100 test500 test1000 test5000
