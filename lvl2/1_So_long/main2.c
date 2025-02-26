@@ -1,52 +1,64 @@
-#include "mlx.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 18:16:38 by alvdelga          #+#    #+#             */
+/*   Updated: 2025/02/26 18:47:10 by alvdelga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define WIDTH 800
-#define HEIGHT 900
+#include "so_long.h"
 
-int	main(void)
+void init_game(t_game *game)
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*background;
-	void	*sprite;
-	int		bg_width, bg_height;
-	int		sprite_width, sprite_height;
+    game->mlx = mlx_init();
+    if (!game->mlx)
+    {
+        printf("Error: No se pudo inicializar MiniLibX\n");
+        exit(1);
+    }
+    game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Fondo + Imagen");
+}
 
-	// Inicializa MiniLibX
-	mlx = mlx_init();
-	if (!mlx)
-	{
-		printf("Error: No se pudo inicializar MiniLibX\n");
-		return (1);
-	}
+void load_images(t_game *game)
+{
+    game->background = mlx_xpm_file_to_image(game->mlx, "fondo.xpm", &game->bg_width, &game->bg_height);
+    if (!game->background)
+    {
+        printf("Error: No se pudo cargar la imagen de fondo\n");
+        exit(1);
+    }
 
-	// Crea una ventana de 800x600
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Fondo + Imagen");
+    game->sprite = mlx_xpm_file_to_image(game->mlx, "player.xpm", &game->sprite_width, &game->sprite_height);
+    if (!game->sprite)
+    {
+        printf("Error: No se pudo cargar la imagen superior\n");
+        exit(1);
+    }
+}
 
-	// Carga la imagen de fondo (debe ser .xpm)
-	background = mlx_xpm_file_to_image(mlx, "fondo.xpm", &bg_width, &bg_height);
-	if (!background)
-	{
-		printf("Error: No se pudo cargar la imagen de fondo\n");
-		return (1);
-	}
+void render_game(t_game *game)
+{
+    mlx_put_image_to_window(game->mlx, game->win, game->background, 0, 0);
+    mlx_put_image_to_window(game->mlx, game->win, game->sprite, 300, 200);
+}
 
-	// Carga otra imagen (sprite) para poner encima del fondo
-	sprite = mlx_xpm_file_to_image(mlx, "player.xpm", &sprite_width, &sprite_height);
-	if (!sprite)
-	{
-		printf("Error: No se pudo cargar la imagen superior\n");
-		return (1);
-	}
+void start_game_loop(t_game *game)
+{
+    mlx_loop(game->mlx);
+}
 
-	// Coloca la imagen de fondo en la ventana
-	mlx_put_image_to_window(mlx, mlx_win, background, 0, 0);
+int main(void)
+{
+    t_game game;
 
-	// Coloca la imagen encima del fondo en una posición específica (por ejemplo, en (300,200))
-	mlx_put_image_to_window(mlx, mlx_win, sprite, 300, 200);
-
-	// Mantiene la ventana abierta
-	mlx_loop(mlx);
-	return (0);
+    init_game(&game);
+    load_images(&game);
+    render_game(&game);
+    start_game_loop(&game);
+    //clean_exit(&game);
+    return (0);
 }
