@@ -3,20 +3,45 @@
 #                                                         :::      ::::::::    #
 #    tester.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: jcluzet <jcluzet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/06 23:07:59 by pandalaf          #+#    #+#              #
-#    Updated: 2022/11/07 00:37:40 by pandalaf         ###   ########.fr        #
+#    Created: 2021/06/20 02:26:11 by jcluzet           #+#    #+#              #
+#    Updated: 2022/09/01 23:46:27 by jcluzet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILE='flood_fill.c'
-ASSIGN='flood_fill'
+FILE='str_capitalizer.c'
+ASSIGN='str_capitalizer'
 
-bash .system/auto_correc_main.sh $FILE $ASSIGN
+bash .system/auto_correc_program.sh $FILE $ASSIGN
 if [ -e .system/grading/traceback ];then
-	mv .system/grading/traceback .
+    mv .system/grading/traceback .
 	exit 1
 fi
+
+bash .system/auto_correc_program.sh $FILE $ASSIGN  "a FiRSt LiTTlE TESt"
+if [ -e .system/grading/traceback ];then
+    mv .system/grading/traceback .
+	exit 1
+fi
+
+bash .system/auto_correc_program.sh $FILE $ASSIGN "SecONd teST A LITtle BiT   Moar comPLEX" "   But... This iS not THAT COMPLEX" "     Okay, this is the last 1239809147801 but not    the least    t"
+if [ -e .system/grading/traceback ];then
+    mv .system/grading/traceback .
+	exit 1
+fi
+
+bash .system/auto_correc_program.sh $FILE $ASSIGN  "Okay i thing you got it!!! "
+if [ -e .system/grading/traceback ];then
+    mv .system/grading/traceback .
+	exit 1
+fi
+
+bash .system/auto_correc_program.sh $FILE $ASSIGN  "10"
+if [ -e .system/grading/traceback ];then
+    mv .system/grading/traceback .
+	exit 1
+fi
+
 
 touch .system/grading/passed;
