@@ -1,4 +1,4 @@
-#include <mlx.h>
+#include "mlx.h"
 #include <stdio.h>
 
 #define WIDTH 800
