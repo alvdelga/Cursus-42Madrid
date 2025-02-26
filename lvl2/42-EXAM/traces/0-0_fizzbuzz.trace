@@ -1,0 +1,10 @@
+----------------8<-------------[ START TEST 
+        💻 TEST
+./a.out 
+        🔎 YOUR OUTPUT:
+gcc: error: ../../rendu/fizzbuzz/fizzbuzz.c: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+
+        ❌ COMPILATION ERROR
+----------------8<------------- END TEST ]

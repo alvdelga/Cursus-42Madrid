@@ -1,3 +1,7 @@
 max
 ft_swap
 ft_strdup
+repeat_alpha
+fizzbuzz
+swap_bits
+str_capitalizer
