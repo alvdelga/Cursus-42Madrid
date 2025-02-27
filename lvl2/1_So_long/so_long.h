@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:15:46 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/26 18:46:51 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:31:49 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <X11/X.h>
+#include <X11/keysym.h>
 
 #define WIDTH 800
 #define HEIGHT 900
@@ -36,5 +38,7 @@ void    load_images(t_game *game);
 void    render_game(t_game *game);
 void    start_game_loop(t_game *game);
 void    clean_exit(t_game *game);
+int 	on_destroy(t_game *game);
+int		on_keypress(int keycode, t_game *game);
 
-#endif
+#endif 
