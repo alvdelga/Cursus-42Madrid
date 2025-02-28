@@ -6,11 +6,11 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 11:27:33 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:00:01 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "game.h"
 #include "gnl/get_next_line.h"
 #include <string.h> // 🔹 Incluir para strlen()
 
