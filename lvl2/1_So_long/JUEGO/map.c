@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 12:00:01 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:52:16 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,29 @@ int load_map(const char *filename, t_map *map)
     if (fd < 0)
         return (perror("Error abriendo archivo"), 0);
 
+    map->width = 0;  // 🔹 Inicializar ancho en 0
+
     while ((line = get_next_line(fd)))
     {
+        int len = strlen(line);
+        if (line[len - 1] == '\n') // 🔹 Quitar salto de línea si existe
+        {
+            line[len - 1] = '\0';
+            len--;
+        }
+
         map->grid[i] = line;
+        
+        if (len > map->width)  // 🔹 Buscar la línea más larga
+            map->width = len;
         i++;
     }
     map->grid[i] = NULL;
     close(fd);
-    map->width = i > 0 ? (int)strlen(map->grid[0]) : 0;
     return (1);
 }
+
+
 
 // Liberar memoria del mapa
 void free_map(t_map *map)

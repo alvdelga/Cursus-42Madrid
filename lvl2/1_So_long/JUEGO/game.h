@@ -6,6 +6,7 @@
 # include <unistd.h> // read(), close()
 # include <stdlib.h> // malloc(), free()
 # include <stdio.h>  // perror()
+# include <string.h> // strlen()
 
 // 🔹 Definir la estructura del mapa una sola vez
 typedef struct s_map {

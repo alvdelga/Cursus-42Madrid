@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:41 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 11:23:50 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:48:12 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h> // read(), close()
 # include <stdlib.h> // malloc(), free()
 # include <stdio.h>  // perror()
+#include <string.h>
 
 typedef struct s_map {
     char    **grid;   // Matriz para almacenar el mapa

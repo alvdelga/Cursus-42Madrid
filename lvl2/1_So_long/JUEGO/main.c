@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 11:22:30 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:52:32 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ int main(int argc, char **argv)
     // Configurar ventana según el tamaño del mapa
     data.win_width = data.map.width * 50; // Cada celda es de 50px
     data.win_high = data.map.height * 50;
+
+	printf("Mapa leído correctamente:\n");
+	for (int i = 0; i < data.map.height; i++)
+    printf("%s\n", data.map.grid[i]);
+
+	printf("Tamaño del mapa: %d x %d\n", data.map.width, data.map.height);
+	printf("Tamaño de la ventana: %d x %d\n", data.win_width, data.win_high);
+
 
     // Inicializar MiniLibX
     data.mlx_ptr = mlx_init();
