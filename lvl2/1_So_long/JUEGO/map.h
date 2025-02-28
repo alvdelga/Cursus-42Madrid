@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:41 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 12:48:12 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:09:40 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_map {
     int     height;   // Alto del mapa
 }   t_map;
 
-int  load_map(const char *filename, t_map *map);
+int  load_map(const char *filename, t_map *map, t_data *data);
+
 void free_map(t_map *map);
 
 #endif

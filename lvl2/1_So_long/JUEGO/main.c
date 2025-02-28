@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 12:52:32 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:10:02 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,49 @@
 
 int handle_keypress(int keysym, t_data *data)
 {
-    if (keysym == 65307) // Tecla ESC para salir
+    int new_x = data->player_x;
+    int new_y = data->player_y;
+
+    // Detectar teclas de movimiento
+    if (keysym == 119 || keysym == 65362) // W o Flecha Arriba
+        new_y--;
+    else if (keysym == 115 || keysym == 65364) // S o Flecha Abajo
+        new_y++;
+    else if (keysym == 97 || keysym == 65361) // A o Flecha Izquierda
+        new_x--;
+    else if (keysym == 100 || keysym == 65363) // D o Flecha Derecha
+        new_x++;
+    else if (keysym == 65307) // ESC para salir
     {
         mlx_destroy_window(data->mlx_ptr, data->win_ptr);
         exit(0);
     }
-    ft_printf("Key press: %d\n", keysym);
+
+    // Verificar si el movimiento es válido (no chocar con '1')
+    if (data->map.grid[new_y][new_x] != '1')
+    {
+        // Si hay un coleccionable, reducir el contador
+        if (data->map.grid[new_y][new_x] == 'C')
+            data->collectibles--;
+
+        // Mover al jugador
+        data->map.grid[data->player_y][data->player_x] = '0'; // Vaciar la posición anterior
+        data->map.grid[new_y][new_x] = 'P'; // Colocar al jugador en la nueva posición
+        data->player_x = new_x;
+        data->player_y = new_y;
+        data->moves++;
+
+        // Mostrar movimientos en consola
+        ft_printf("Movimientos: %d\n", data->moves);
+
+        // Redibujar el mapa
+        draw_map(data);
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+    }
+
     return (0);
 }
+
 
 int main(int argc, char **argv)
 {
@@ -32,8 +67,8 @@ int main(int argc, char **argv)
         return (ft_printf("Uso: %s <archivo.ber>\n", argv[0]), 1);
     
     // Cargar el mapa desde el archivo .ber
-    if (!load_map(argv[1], &data.map))
-        return (ft_printf("Error al cargar el mapa\n"), 1);
+	if (!load_map(argv[1], &data.map, &data)) // Pasamos &data para capturar player_x y player_y
+    return (ft_printf("Error al cargar el mapa\n"), 1);
 
     // Configurar ventana según el tamaño del mapa
     data.win_width = data.map.width * 50; // Cada celda es de 50px

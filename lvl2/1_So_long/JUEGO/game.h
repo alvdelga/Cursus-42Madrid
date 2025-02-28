@@ -1,6 +1,12 @@
 #ifndef GAME_H
 # define GAME_H
 
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+
 # include "minilibx-linux/mlx.h"
 # include <fcntl.h>  // open()
 # include <unistd.h> // read(), close()
@@ -34,7 +40,7 @@ typedef struct s_data {
 }   t_data;
 
 // 🔹 Declaraciones de funciones
-int  load_map(const char *filename, t_map *map);
+int  load_map(const char *filename, t_map *map, t_data *data);
 void free_map(t_map *map);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void draw_map(t_data *data);

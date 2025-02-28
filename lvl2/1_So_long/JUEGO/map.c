@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 12:52:16 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:09:23 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int count_lines(const char *filename)
 }
 
 // Función para leer el mapa en una matriz
-int load_map(const char *filename, t_map *map)
+int load_map(const char *filename, t_map *map, t_data *data) // Agregamos `t_data *data`
 {
     int     fd;
     int     i = 0;
@@ -65,17 +65,29 @@ int load_map(const char *filename, t_map *map)
         }
 
         map->grid[i] = line;
-        
+
+        // 🔹 Buscar la posición del jugador ('P') usando solo while
+        int j = 0;
+        while (j < len)
+        {
+            if (map->grid[i][j] == 'P') // Si encontramos 'P'
+            {
+                data->player_x = j;  // Guardamos su posición X
+                data->player_y = i;  // Guardamos su posición Y
+            }
+            j++;
+        }
+
         if (len > map->width)  // 🔹 Buscar la línea más larga
             map->width = len;
+        
         i++;
     }
+    
     map->grid[i] = NULL;
     close(fd);
     return (1);
 }
-
-
 
 // Liberar memoria del mapa
 void free_map(t_map *map)
