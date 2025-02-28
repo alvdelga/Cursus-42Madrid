@@ -1,0 +1,43 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/28 10:24:36 by alvdelga          #+#    #+#              #
+#    Updated: 2025/02/28 10:31:21 by alvdelga         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = juego
+
+# Archivos fuente
+SRC = juego.c
+OBJ = $(SRC:.c=.o)
+
+# Directorios de librerías
+MLX_DIR = minilibx-linux
+PRINTF_DIR = ft_printf
+
+# Librerías
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
+PRINTF_FLAGS = -L$(PRINTF_DIR) -lftprintf
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	make -C $(PRINTF_DIR)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLX_FLAGS) $(PRINTF_FLAGS)
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+	make -C $(PRINTF_DIR) fclean
+
+re: fclean all
