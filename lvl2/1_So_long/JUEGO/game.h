@@ -62,5 +62,14 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void draw_map(t_data *data);
 void game_over_banner(void);
 void put_images(t_data *data);
+void check_valid_map(t_data *data);
+void check_rectangular(t_map *map);
+void check_borders(t_map *map);
+void check_items(t_map *map, t_data *data);
+void error_cases(const char *msg);
+void check_map(t_data *data);
+int  flood_fill(int y, int x, char **map, int *coins, int *exit_found, int map_width, int map_height);
+
+
 
 #endif

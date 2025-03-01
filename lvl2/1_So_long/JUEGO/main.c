@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/01 18:39:06 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/01 19:32:12 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ int main(int argc, char **argv)
         return (ft_printf("Error al cargar el mapa\n"), 1);
 	}
 	
+	
+
+	// Contar coleccionables
+	
 	while (y < data.map.height)
 	{
 		int x = 0;
@@ -103,6 +107,9 @@ int main(int argc, char **argv)
 		y++;
 	}
 
+	// Verificar si el mapa es válido
+	check_valid_map(&data);
+	
     // Configurar ventana según el tamaño del mapa
     data.win_width = data.map.width * 64; // Cada celda es de 50px
     data.win_high = data.map.height * 64;
