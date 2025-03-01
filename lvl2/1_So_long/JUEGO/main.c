@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/02/28 23:52:45 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:39:06 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ int handle_keypress(int keysym, t_data *data)
     {
         // Si el jugador realmente se mueve, incrementar el contador
         if (new_x != data->player_x || new_y != data->player_y)
-            data->moves++;  // ✅ Solo aumenta si cambia la posición
+            data->moves++;
 
-        // Si hay un coleccionable, aumentar el contador
+        // Si hay un coleccionable, disminuir el contador
         if (data->map.grid[new_y][new_x] == 'C')
             data->collectibles--;
-		else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles != 0)
-		{
-			ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
-			return (0);
-		}
-		else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles == 0)
-		{
-			ft_printf("¡Felicidades! Has recogido todos los coleccionables y has salido del mapa\n");
-			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-			exit(0);
-		}
+        else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles != 0)
+        {
+            ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
+            return (0);
+        }
+        else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles == 0)
+        {
+            game_over_banner();
+            mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+            exit(0);
+        }
 
         // Mover al jugador
         data->map.grid[data->player_y][data->player_x] = '0'; // Vaciar la posición anterior
@@ -65,9 +65,8 @@ int handle_keypress(int keysym, t_data *data)
         ft_printf("Movimientos: %d\n", data->moves);
         printf("Coleccionables: %d\n", data->collectibles);
 
-        // Redibujar el mapa
+        // Redibujar el mapa con imágenes XPM
         draw_map(data);
-        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
     }
 
     return (0);
@@ -79,9 +78,7 @@ int main(int argc, char **argv)
 	data.collectibles = 0;
 	data.moves = 0;
 
-	int y;
-
-	y = 0;
+	int y = 0;
 	
     if (argc != 2)
     {
@@ -107,8 +104,8 @@ int main(int argc, char **argv)
 	}
 
     // Configurar ventana según el tamaño del mapa
-    data.win_width = data.map.width * 50; // Cada celda es de 50px
-    data.win_high = data.map.height * 50;
+    data.win_width = data.map.width * 64; // Cada celda es de 50px
+    data.win_high = data.map.height * 64;
 
     printf("Mapa leído correctamente:\n");
     for (int i = 0; i < data.map.height; i++)
@@ -127,19 +124,11 @@ int main(int argc, char **argv)
     if (!data.win_ptr)
         return (free(data.mlx_ptr), 1);
 
-    // Crear una imagen en memoria
-    data.img = mlx_new_image(data.mlx_ptr, data.win_width, data.win_high);
-    if (!data.img)
-        return (ft_printf("Error: No se pudo crear la imagen\n"), 1);
+    // Cargar imágenes XPM
+    put_images(&data);
 
-    // Obtener la dirección de la imagen para modificarla
-    data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-
-    // Dibujar el mapa en la ventana
+    // Dibujar el mapa con imágenes
     draw_map(&data);
-
-    // Mostrar la imagen en la ventana
-    mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 
     // Manejo de eventos
     mlx_key_hook(data.win_ptr, handle_keypress, &data);

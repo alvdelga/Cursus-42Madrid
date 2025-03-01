@@ -7,7 +7,15 @@
 # define D 100
 # define ESC 65307
 
+# define BART "./textures/player.xpm"
+# define FLOOR "./textures/floor.xpm"
+# define WALL "./textures/wall.xpm"
+# define OBJECT "./textures/collectible.xpm"
+# define EXIT "./textures/exit.xpm"
+
+
 # include "minilibx-linux/mlx.h"
+# include "ft_printf/ft_printf.h"
 # include <fcntl.h>  // open()
 # include <unistd.h> // read(), close()
 # include <stdlib.h> // malloc(), free()
@@ -37,6 +45,14 @@ typedef struct s_data {
     int     player_y;
     int     collectibles;
     int     moves;
+
+	 // 🔹 Agregar imágenes XPM
+	 void    *wall;
+	 void    *player;
+	 void    *floor;
+	 void    *exit;
+	 void    *objects;
+
 }   t_data;
 
 // 🔹 Declaraciones de funciones
@@ -44,5 +60,7 @@ int  load_map(const char *filename, t_map *map, t_data *data);
 void free_map(t_map *map);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void draw_map(t_data *data);
+void game_over_banner(void);
+void put_images(t_data *data);
 
 #endif

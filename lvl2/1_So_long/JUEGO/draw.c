@@ -6,11 +6,28 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:14 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/01 08:42:00 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:39:21 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+void put_images(t_data *data)
+{
+    int len = 64;
+
+    data->wall = mlx_xpm_file_to_image(data->mlx_ptr, "textures/wall.xpm", &len, &len);
+    data->player = mlx_xpm_file_to_image(data->mlx_ptr, "textures/player.xpm", &len, &len);
+    data->floor = mlx_xpm_file_to_image(data->mlx_ptr, "textures/floor.xpm", &len, &len);
+    data->exit = mlx_xpm_file_to_image(data->mlx_ptr, "textures/exit.xpm", &len, &len);
+    data->objects = mlx_xpm_file_to_image(data->mlx_ptr, "textures/collectible.xpm", &len, &len);
+
+    if (!data->wall || !data->player || !data->floor || !data->exit || !data->objects)
+    {
+        perror("Error cargando imágenes XPM");
+        exit(EXIT_FAILURE);
+    }
+}
 
 // Escribir un píxel en la imagen
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -28,7 +45,7 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void draw_map(t_data *data)
 {
     int x, y;
-    int tile_size = 50; // Tamaño de cada celda
+    int tile_size = 64; // Tamaño de cada celda en px
 
     y = 0;
     while (y < data->map.height)
@@ -36,43 +53,28 @@ void draw_map(t_data *data)
         x = 0;
         while (x < data->map.width)
         {
-            // Verificar que el índice está dentro de los límites del mapa
-            if (!data->map.grid[y] || x >= (int)strlen(data->map.grid[y]))
-            {
-                x++;
-                continue;  // Saltar espacios vacíos
-            }
-
             int pixel_x = x * tile_size;
             int pixel_y = y * tile_size;
-            int color;
 
-            if (data->map.grid[y][x] == '1')
-                color = 0x8B4513; // Marrón para las paredes
-            else if (data->map.grid[y][x] == 'P')
-                color = 0x00FF00; // Verde para el jugador
-            else if (data->map.grid[y][x] == 'C')
-                color = 0xFFFF00; // Amarillo para coleccionables
-            else if (data->map.grid[y][x] == 'E')
-                color = 0xFF0000; // Rojo para la salida
-            else
-                color = 0x000000; // Negro para el suelo
+            char c = data->map.grid[y][x];
 
-            int i = 0;
-            while (i < tile_size)
-            {
-                int j = 0;
-                while (j < tile_size)
-                {
-                    my_mlx_pixel_put(data, pixel_x + j, pixel_y + i, color);
-                    j++;
-                }
-                i++;
-            }
+            // Poner suelo en cada celda
+            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->floor, pixel_x, pixel_y);
+
+            if (c == '1')
+                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->wall, pixel_x, pixel_y);
+            else if (c == 'P')
+                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player, pixel_x, pixel_y);
+            else if (c == 'C')
+                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->objects, pixel_x, pixel_y);
+            else if (c == 'E')
+                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->exit, pixel_x, pixel_y);
+
             x++;
         }
         y++;
     }
 }
+
 
 
