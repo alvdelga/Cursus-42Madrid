@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 13:11:06 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:43:15 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	init_game(t_data *data)
 {
 	data->collectibles = 0;
 	data->moves = 0;
+	data->player_x = -1;
+	data->player_y = -1;
 }
 
 int	setup_window(t_data *data)
@@ -80,10 +82,11 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error al cargar el mapa\n"), 1);
 	ft_printf("DEBUG: Mapa cargado en memoria:\n");
 	count_collectibles(&data);
-	check_valid_map(&data);
+	check_map(&data);
 	if (setup_window(&data))
 		return (1);
 	run_game(&data);
 	free_map(&data.map);
+	free_images(&data);
 	return (0);
 }

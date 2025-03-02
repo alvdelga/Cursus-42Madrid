@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 13:08:38 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:34:43 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,26 @@ static	void	remove_newline(char *line, int *len)
 }
 
 // Buscar la posición inicial del jugador en el mapa
-static	void	find_player_position(t_data *data, char *line, int row)
+static void find_player_position(t_data *data, char *line, int row)
 {
-	int	j;
+    int j;
 
-	j = 0;
-	while (line[j])
-	{
-		if (line[j] == 'P')
-		{
-			data->player_x = j;
-			data->player_y = row;
-			return ;
-		}
-		j++;
-	}
+    j = 0;
+    while (line[j])
+    {
+        if (line[j] == 'P')
+        {
+            if (data->player_x != -1 || data->player_y != -1)
+            {
+                error_cases("Múltiples posiciones de jugador en el mapa.");
+            }
+            data->player_x = j;
+            data->player_y = row;
+        }
+        j++;
+    }
 }
+
 
 // Leer y procesar el archivo del mapa
 static int	read_map_file(int fd, t_map *map, t_data *data)
@@ -88,20 +92,24 @@ static int	read_map_file(int fd, t_map *map, t_data *data)
 }
 
 // Función principal para cargar el mapa desde el archivo
-int	load_map(const char *filename, t_map *map, t_data *data)
+int load_map(const char *filename, t_map *map, t_data *data)
 {
-	int	fd;
+    int fd;
 
-	map->height = count_lines(filename);
-	if (map->height <= 0)
-		return (perror("Error leyendo mapa"), 0);
-	if (!allocate_map_memory(map))
-		return (0);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (perror("Error abriendo archivo"), 0);
-	if (!read_map_file(fd, map, data))
-		return (0);
-	close(fd);
-	return (1);
+    map->height = count_lines(filename);
+    if (map->height <= 0)
+        return (perror("Error leyendo mapa"), 0);
+    if (!allocate_map_memory(map))
+        return (0);
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+        return (perror("Error abriendo archivo"), 0);
+    if (!read_map_file(fd, map, data))
+    {
+        close(fd);
+        return (0);
+    }
+    close(fd);
+    return (1);
 }
+

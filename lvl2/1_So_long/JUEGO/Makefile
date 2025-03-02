@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/02 13:17:13 by alvdelga          #+#    #+#              #
-#    Updated: 2025/03/02 13:31:29 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/03/02 21:29:21 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 
 # Compilador y flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I include -I ft_printf -I gnl -I minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -g -I include -I ft_printf -I gnl -I minilibx-linux
 
 # Directorios
 SRC_DIR = src
