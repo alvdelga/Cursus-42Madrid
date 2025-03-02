@@ -7,6 +7,15 @@
 # define D 100
 # define ESC 65307
 
+#define RST         "\033[0m"       // Resetear colores y estilos
+#define SLOW_BLINK  "\033[5m"       // Parpadeo lento
+#define BOLD        "\033[1m"       // Negrita
+
+// Colores de texto
+#define F_L_YELLOW  "\033[1;33m"    // Amarillo brillante
+#define F_L_GREY    "\033[1;37m"    // Gris claro (casi blanco)
+#define F_L_MAGENTA "\033[1;35m"    // Magenta brillante
+
 # define BART "./textures/player.xpm"
 # define FLOOR "./textures/floor.xpm"
 # define WALL "./textures/wall.xpm"
