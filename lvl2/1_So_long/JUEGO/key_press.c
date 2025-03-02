@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 09:50:44 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 10:05:01 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 11:27:46 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int validate_and_move(t_data *data, int new_x, int new_y)
             ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
             return (0);
         }
-        game_over_banner();
+        game_over_banner(data);
         mlx_destroy_window(data->mlx_ptr, data->win_ptr);
         exit(0);
     }

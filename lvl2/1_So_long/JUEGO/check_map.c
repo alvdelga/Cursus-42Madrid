@@ -147,17 +147,32 @@ void check_valid_map(t_data *data)
             error_cases("Error al duplicar el mapa");
     }
     map_copy[data->map.height] = NULL;
+	if (data->player_x < 0 || data->player_y < 0)
+	{
+		error_cases("Error: No se encontró la posición inicial del jugador en el mapa.");
+	}
+
 
     // Debug antes del Flood Fill
     ft_printf("DEBUG: Posición inicial del jugador -> x: %d, y: %d\n", x, y);
     ft_printf("DEBUG: Coleccionables -> %d\n", coins);
     ft_printf("DEBUG: Mapa copiado antes del Flood Fill:\n");
-    for (int i = 0; i < data->map.height; i++)
-        ft_printf("%s\n", map_copy[i]);
+for (int i = 0; i < data->map.height; i++)
+{
+    ft_printf("%s\n", map_copy[i]);  // ✅ Ahora está claro que pertenece al `for`
+}
 
-    // Asegurar que se usa bien `y, x` en el Flood Fill
-    if (!flood_fill(y, x, map_copy, &coins, &exit_found, data->map.width, data->map.height))
+if (data->player_x < 0 || data->player_y < 0)  
+{
+    error_cases("Error: No se encontró la posición inicial del jugador.");
+}
+
+if (!flood_fill(y, x, map_copy, &coins, &exit_found,
+    data->map.width, data->map.height))
+{
     error_cases("El mapa no tiene una solución válida");
+}
+
 
     // Liberar memoria
     for (int i = 0; i < data->map.height; i++)

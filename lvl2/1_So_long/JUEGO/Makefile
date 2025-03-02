@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c map.c draw.c gnl/get_next_line.c gnl/get_next_line_utils.c \
        ft_printf/ft_printf.c ft_printf/ft_putstr_fd.c ft_printf/ft_putchar_fd.c \
        ft_printf/ft_putnbr_fd.c ft_printf/ft_putunsigned.c ft_printf/ft_memdir.c game_end.c \
-	   check_map.c error.c key_press.c
+	   check_map.c error.c key_press.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 

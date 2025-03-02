@@ -6,14 +6,15 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:10:26 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 10:03:33 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 11:35:36 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void game_over_banner(void)
+void game_over_banner(t_data *data)
 {
+    ft_printf("Movimientos: %d\n", data->moves);
     ft_printf("\n\n%s", SLOW_BLINK);  // Parpadeo lento
     ft_printf("%s╔═╗╔═╗╔╦╗╔═╗  ╔═╗╦  ╦╔═╗╦═╗\n", RED); // Rojo brillante
     ft_printf("%s║ ╦╠═╣║║║║╣   ║ ║╚╗╔╝║╣ ╠╦╝\n", CIAN); // Cian brillante
