@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 12:37:57 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 13:08:38 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	void	find_player_position(t_data *data, char *line, int row)
 		{
 			data->player_x = j;
 			data->player_y = row;
-			return;
+			return ;
 		}
 		j++;
 	}

@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 11:52:15 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 12:05:13 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 13:11:44 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	free_map(t_map *map)
 	int	i;
 
 	i = 0;
-
 	while (map->grid[i])
 		free(map->grid[i++]);
 	free(map->grid);
