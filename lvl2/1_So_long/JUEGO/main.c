@@ -6,71 +6,12 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/01 22:14:22 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 10:17:27 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-#include "ft_printf/ft_printf.h"
 
-int handle_keypress(int keysym, t_data *data)
-{
-    int new_x = data->player_x;
-    int new_y = data->player_y;
-
-    // Detectar teclas de movimiento
-    if (keysym == 119 || keysym == 65362) // W o Flecha Arriba
-        new_y--;
-    else if (keysym == 115 || keysym == 65364) // S o Flecha Abajo
-        new_y++;
-    else if (keysym == 97 || keysym == 65361) // A o Flecha Izquierda
-        new_x--;
-    else if (keysym == 100 || keysym == 65363) // D o Flecha Derecha
-        new_x++;
-    else if (keysym == 65307) // ESC para salir
-    {
-        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-        exit(0);
-    }
-
-    // Verificar si el movimiento es válido (no chocar con '1')
-    if (data->map.grid[new_y][new_x] != '1')
-    {
-        // Si el jugador realmente se mueve, incrementar el contador
-        if (new_x != data->player_x || new_y != data->player_y)
-            data->moves++;
-
-        // Si hay un coleccionable, disminuir el contador
-        if (data->map.grid[new_y][new_x] == 'C')
-            data->collectibles--;
-        else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles != 0)
-        {
-            ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
-            return (0);
-        }
-        else if (data->map.grid[new_y][new_x] == 'E' && data->collectibles == 0)
-        {
-            game_over_banner();
-            mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-            exit(0);
-        }
-
-        // Mover al jugador
-        data->map.grid[data->player_y][data->player_x] = '0'; // Vaciar la posición anterior
-        data->map.grid[new_y][new_x] = 'P'; // Colocar al jugador en la nueva posición
-        data->player_x = new_x;
-        data->player_y = new_y;
-
-        // Mostrar movimientos en consola
-        ft_printf("Movimientos: %d\n", data->moves);
-        printf("Coleccionables: %d\n", data->collectibles);
-
-        // Redibujar el mapa con imágenes XPM
-        draw_map(data);
-    }
-
-    return (0);
-}
 void count_collectibles(t_data *data)
 {
     int y = 0;
@@ -95,8 +36,8 @@ void init_game(t_data *data)
 
 int setup_window(t_data *data)
 {
-    data->win_width = data->map.width * 64; // Cada celda es de 64px
-    data->win_high = data->map.height * 64;
+    data->win_width = data->map.width * TILE_SIZE; // Cada celda es de 64px
+    data->win_high = data->map.height * TILE_SIZE;
     data->mlx_ptr = mlx_init();
     if (!data->mlx_ptr)
         return (1);
@@ -106,11 +47,15 @@ int setup_window(t_data *data)
 
 void run_game(t_data *data)
 {
-    put_images(data);  // Cargar imágenes XPM
-    draw_map(data);    // Dibujar el mapa con imágenes
-    mlx_key_hook(data->win_ptr, handle_keypress, data); // Manejo de eventos
+    put_images(data);
+    draw_map(data);
+
+    mlx_key_hook(data->win_ptr, handle_keypress, data); // Manejo de teclas
+    mlx_hook(data->win_ptr, 17, 0, x_close, data); // Manejo del cierre de ventana
+
     mlx_loop(data->mlx_ptr);
 }
+
 
 int main(int argc, char **argv)
 {

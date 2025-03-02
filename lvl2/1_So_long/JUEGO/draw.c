@@ -6,15 +6,16 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:14 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/01 18:39:21 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 10:13:14 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
+// Cargar imágenes desde archivos XPM
 void put_images(t_data *data)
 {
-    int len = 64;
+    int len = TILE_SIZE;
 
     data->wall = mlx_xpm_file_to_image(data->mlx_ptr, "textures/wall.xpm", &len, &len);
     data->player = mlx_xpm_file_to_image(data->mlx_ptr, "textures/player.xpm", &len, &len);
@@ -29,52 +30,53 @@ void put_images(t_data *data)
     }
 }
 
-// Escribir un píxel en la imagen
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// Calcular las coordenadas en píxeles para dibujar en la ventana
+void get_pixel_position(int x, int y, int *pixel_x, int *pixel_y)
 {
-    char *dst;
+    *pixel_x = x * TILE_SIZE;
+    *pixel_y = y * TILE_SIZE;
+}
 
-    if (x >= 0 && x < data->win_width && y >= 0 && y < data->win_high)
+// Dibujar una imagen específica en una celda del mapa
+void draw_tile(t_data *data, char tile, int x, int y)
+{
+    int pixel_x, pixel_y;
+
+    get_pixel_position(x, y, &pixel_x, &pixel_y);
+    
+    // Primero dibuja el suelo como base
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->floor, pixel_x, pixel_y);
+
+    if (tile == '1')
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->wall, pixel_x, pixel_y);
+    else if (tile == 'P')
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player, pixel_x, pixel_y);
+    else if (tile == 'C')
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->objects, pixel_x, pixel_y);
+    else if (tile == 'E')
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->exit, pixel_x, pixel_y);
+}
+
+// Dibujar cada fila del mapa (sin `for`)
+void draw_map_row(t_data *data, int y)
+{
+    int x = 0;
+
+    while (x < data->map.width)
     {
-        dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-        *(unsigned int*)dst = color;
+        draw_tile(data, data->map.grid[y][x], x, y);
+        x++;
     }
 }
 
-// Dibujar el mapa en la ventana
+// Dibujar el mapa completo (sin `for`)
 void draw_map(t_data *data)
 {
-    int x, y;
-    int tile_size = 64; // Tamaño de cada celda en px
+    int y = 0;
 
-    y = 0;
     while (y < data->map.height)
     {
-        x = 0;
-        while (x < data->map.width)
-        {
-            int pixel_x = x * tile_size;
-            int pixel_y = y * tile_size;
-
-            char c = data->map.grid[y][x];
-
-            // Poner suelo en cada celda
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->floor, pixel_x, pixel_y);
-
-            if (c == '1')
-                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->wall, pixel_x, pixel_y);
-            else if (c == 'P')
-                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player, pixel_x, pixel_y);
-            else if (c == 'C')
-                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->objects, pixel_x, pixel_y);
-            else if (c == 'E')
-                mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->exit, pixel_x, pixel_y);
-
-            x++;
-        }
+        draw_map_row(data, y);
         y++;
     }
 }
-
-
-

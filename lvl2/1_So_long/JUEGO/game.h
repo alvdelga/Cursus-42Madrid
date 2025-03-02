@@ -1,5 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
+/*   Updated: 2025/03/02 10:08:50 by alvdelga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GAME_H
 # define GAME_H
+
+#include "ft_printf/ft_printf.h"
+#include "gnl/get_next_line.h"
+#include <string.h> // 🔹 Incluir para strlen()
+
+#define TILE_SIZE 64
 
 # define W 119
 # define A 97
@@ -15,6 +33,9 @@
 #define F_L_YELLOW  "\033[1;33m"    // Amarillo brillante
 #define F_L_GREY    "\033[1;37m"    // Gris claro (casi blanco)
 #define F_L_MAGENTA "\033[1;35m"    // Magenta brillante
+#define RED  "\033[1;31m"
+#define CIAN    "\033[1;36m"
+#define BLUE "\033[1;34m"   
 
 # define BART "./textures/player.xpm"
 # define FLOOR "./textures/floor.xpm"
@@ -78,7 +99,8 @@ void check_items(t_map *map, t_data *data);
 void error_cases(const char *msg);
 void check_map(t_data *data);
 int  flood_fill(int y, int x, char **map, int *coins, int *exit_found, int map_width, int map_height);
-
+int	x_close(t_data *data);
+int handle_keypress(int keysym, t_data *data);
 
 
 #endif
