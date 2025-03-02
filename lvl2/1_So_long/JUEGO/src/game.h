@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 13:45:56 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:51:50 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@
 # define CIAN    "\033[1;36m"
 # define BLUE "\033[1;34m"
 
-# define PLA "./textures/player.xpm"
-# define FLOOR "./textures/floor.xpm"
-# define WALL "./textures/wall.xpm"
-# define OBJECT "./textures/collectible.xpm"
-# define EXIT "./textures/exit.xpm"
+# define PLA "./sprites/player_rr.xpm"
+# define FLOOR "./sprites/floor.xpm"
+# define WALL "./sprites/wall.xpm"
+# define OBJECT "./sprites/collectible.xpm"
+# define EXIT "./sprites/exit.xpm"
 
 # include <fcntl.h>  // open()
 # include <unistd.h> // read(), close()

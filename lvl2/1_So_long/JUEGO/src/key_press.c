@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 09:50:44 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 13:50:05 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:36:10 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int	validate_and_move(t_data *data, int new_x, int new_y)
 	else if (data->map.grid[new_y][new_x] == 'E')
 	{
 		if (data->collectibles != 0)
-			error_cases("Error: You must collect all the objects");
+		{
+			ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
+			return (0);
+		}
 		game_over_banner(data);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		exit(0);
