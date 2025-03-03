@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 21:34:43 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:56:32 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,51 +45,69 @@ static	void	remove_newline(char *line, int *len)
 }
 
 // Buscar la posición inicial del jugador en el mapa
-static void find_player_position(t_data *data, char *line, int row)
+static int find_player_position(t_data *data, char *line, int row)
 {
-    int j;
-
-    j = 0;
+    int j = 0;
+    
     while (line[j])
     {
         if (line[j] == 'P')
         {
             if (data->player_x != -1 || data->player_y != -1)
             {
-                error_cases("Múltiples posiciones de jugador en el mapa.");
+                // Si ya hay una posición de jugador registrada, hay un error
+                return 0;  // Retorna 0 si hay más de un jugador
             }
             data->player_x = j;
             data->player_y = row;
         }
         j++;
     }
+    return 1;  // Retorna 1 si todo está bien
 }
 
 
 // Leer y procesar el archivo del mapa
-static int	read_map_file(int fd, t_map *map, t_data *data)
+static int read_map_file(int fd, t_map *map, t_data *data)
 {
-	char	*line;
-	int		i;
-	int		len;
+    char *line;
+    int i;
+    int len;
 
-	i = 0;
-	map->width = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		len = ft_strlen(line);
-		remove_newline(line, &len);
-		map->grid[i] = line;
-		find_player_position(data, line, i);
-		if (len > map->width)
-			map->width = len;
-		i++;
-		line = get_next_line(fd);
-	}
-	map->grid[i] = NULL;
-	return (1);
+    i = 0;
+    map->width = 0;
+    line = get_next_line(fd);
+    
+    while (line)
+    {
+        len = ft_strlen(line);
+        remove_newline(line, &len);
+        
+        map->grid[i] = line;
+        
+        // Llamada para verificar la posición del jugador
+        if (!find_player_position(data, line, i))
+        {
+            // Si hay múltiples jugadores, liberamos la memoria y salimos con error
+            free(line);
+            for (int j = 0; j < i; j++) {
+                free(map->grid[j]);
+            }
+            map->grid = NULL;
+            error_cases("Error: Múltiples posiciones de jugador en el mapa.", data);
+        }
+
+        if (len > map->width)
+            map->width = len;
+        
+        i++;
+        line = get_next_line(fd);
+    }
+
+    map->grid[i] = NULL; // Marca el final de la matriz
+    return 1;
 }
+
 
 // Función principal para cargar el mapa desde el archivo
 int load_map(const char *filename, t_map *map, t_data *data)
@@ -98,18 +116,33 @@ int load_map(const char *filename, t_map *map, t_data *data)
 
     map->height = count_lines(filename);
     if (map->height <= 0)
-        return (perror("Error leyendo mapa"), 0);
+    {
+        error_cases("Error leyendo mapa", data);  // Si no se puede contar las líneas, llamar a error_cases
+    }
+
     if (!allocate_map_memory(map))
-        return (0);
+    {
+        error_cases("Error al asignar memoria para el mapa", data);  // Si no se puede asignar memoria para el mapa, llamar a error_cases
+    }
+
     fd = open(filename, O_RDONLY);
     if (fd < 0)
-        return (perror("Error abriendo archivo"), 0);
+    {
+        error_cases("Error abriendo archivo", data);  // Si no se puede abrir el archivo, llamar a error_cases
+    }
+
     if (!read_map_file(fd, map, data))
     {
-        close(fd);
-        return (0);
+        // Si la lectura falla (por ejemplo, múltiples jugadores), liberamos la memoria
+        free_map(map);  // Liberamos la memoria previamente asignada
+        close(fd);  // Asegúrate de cerrar el archivo
+        error_cases("Error leyendo el archivo del mapa", data);  // Llamamos a error_cases
     }
-    close(fd);
-    return (1);
+
+    close(fd);  // Asegúrate de cerrar el archivo
+
+    return 1;  // Todo salió bien
 }
+
+
 

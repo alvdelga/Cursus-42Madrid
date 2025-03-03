@@ -6,13 +6,14 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/02 21:37:21 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:37:35 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
+# include <X11/Xlib.h>
 # include "../ft_printf/ft_printf.h"
 # include "../gnl/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
@@ -90,10 +91,10 @@ void	draw_map(t_data *data);
 void	game_over_banner(t_data *data);
 void	put_images(t_data *data);
 void	check_valid_map(t_data *data);
-void	check_rectangular(t_map *map);
-void	check_borders(t_map *map);
-void	check_items(t_map *map);
-void	error_cases(const char *msg);
+void	check_rectangular(t_map *map, t_data *data);
+void	check_borders(t_map *map, t_data *data);
+void	check_items(t_map *map, t_data *data);
+void	error_cases(const char *msg, t_data *data);
 void	check_map(t_data *data);
 int		flood_fill(int y, int x, char **map, int *coins,
 			int *exit_found, int map_width, int map_height);
@@ -102,5 +103,6 @@ int		handle_keypress(int keysym, t_data *data);
 void	free_map(t_map *map);
 int		allocate_map_memory(t_map *map);
 void	free_images(t_data *data);
+void close_x_connection(void *mlx_ptr);
 
 #endif
