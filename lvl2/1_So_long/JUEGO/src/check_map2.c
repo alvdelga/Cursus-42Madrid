@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 17:28:38 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 17:31:38 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:31:51 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	check_rectangular(t_map *map, t_data *data)
 	int	row_length;
 
 	if (map->height < 2)
-		error_cases("Error: El mapa no es rectangular.", data);
+		error_cases("1 Error: El mapa no es rectangular.", data);
 	if (!map->grid || !map->grid[0])
-		error_cases("Error: El mapa no es rectangular.", data);
+		error_cases("2 Error: El mapa no es rectangular.", data);
 	width = strlen(map->grid[0]);
 	i = 0;
 	row_length = 0;
 	while (i < map->height)
 	{
 		if (!map->grid[i])
-			error_cases("Error: El mapa no es rectangular.", data);
+			error_cases("3 Error: El mapa no es rectangular.", data);
 		row_length = strlen(map->grid[i]);
 		if (row_length != width)
-			error_cases("Error: El mapa no es rectangular.", data);
+			error_cases("4 Error: El mapa no es rectangular.", data);
 		i++;
 	}
 	map->width = width;

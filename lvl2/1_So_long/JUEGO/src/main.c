@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 12:49:51 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:31:58 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,21 @@ void	count_collectibles(t_data *data)
 	int	y;
 	int	x;
 
+	if (!data->map.grid)
+	{
+		ft_printf("Error: data->map.grid es NULL\n");
+		return ;
+	}
 	y = 0;
 	while (y < data->map.height)
 	{
+		if (!data->map.grid[y])
+		{
+			ft_printf("Error: data->map.grid[%d] es NULL\n", y);
+			return ;
+		}
 		x = 0;
-		while (x < data->map.width)
+		while (x < (int)strlen(data->map.grid[y]))
 		{
 			if (data->map.grid[y][x] == 'C')
 				data->collectibles++;
@@ -87,7 +97,7 @@ int	main(int argc, char **argv)
 
 	init_game(&data);
 	if (argc != 2)
-		return (ft_printf("Uso: %s <archivo.ber>\n", argv[0]), 1);
+		return (ft_printf("Error\n: %s <archivo.ber>\n", argv[0]), 1);
 	if (!load_map(argv[1], &data.map, &data))
 	{
 		ft_printf("Error al cargar el mapa\n");
