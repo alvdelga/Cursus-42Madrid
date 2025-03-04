@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 18:37:35 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:40:39 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ typedef struct s_data
 	void	*objects;
 }	t_data;
 
+
+
+
 // 🔹 Declaraciones de funciones
 int		load_map(const char *filename, t_map *map, t_data *data);
 void	free_map(t_map *map);
@@ -104,5 +107,6 @@ void	free_map(t_map *map);
 int		allocate_map_memory(t_map *map);
 void	free_images(t_data *data);
 void close_x_connection(void *mlx_ptr);
+void	remove_newline(char *line, int *len);
 
 #endif

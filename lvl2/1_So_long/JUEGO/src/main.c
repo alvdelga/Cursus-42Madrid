@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 19:20:30 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:49:51 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,25 @@ void	count_collectibles(t_data *data)
 	}
 }
 
-void init_game(t_data *data)
+void	init_game(t_data *data)
 {
-    data->mlx_ptr = NULL;
-    data->win_ptr = NULL;
-    data->img = NULL;
-    data->addr = NULL;
-    data->bits_per_pixel = 0;
-    data->line_length = 0;
-    data->endian = 0;
-    data->win_width = 0;
-    data->win_high = 0;
-    data->player_x = -1;
-    data->player_y = -1;
-    data->collectibles = 0;
-    data->moves = 0;
-    
-    // Inicializar el mapa
-    data->map.grid = NULL;
-    data->map.width = 0;
-    data->map.height = 0;
+	data->mlx_ptr = NULL;
+	data->win_ptr = NULL;
+	data->img = NULL;
+	data->addr = NULL;
+	data->bits_per_pixel = 0;
+	data->line_length = 0;
+	data->endian = 0;
+	data->win_width = 0;
+	data->win_high = 0;
+	data->player_x = -1;
+	data->player_y = -1;
+	data->collectibles = 0;
+	data->moves = 0;
+	data->map.grid = NULL;
+	data->map.width = 0;
+	data->map.height = 0;
 }
-
 
 int	setup_window(t_data *data)
 {
@@ -61,19 +58,19 @@ int	setup_window(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 	{
-		free_map(&data->map);  // Liberar el mapa en caso de error
+		free_map(&data->map);
 		return (1);
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width, data->win_high, "So_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width,
+			data->win_high, "So_long");
 	if (!data->win_ptr)
 	{
 		free(data->mlx_ptr);
-		free_map(&data->map);  // Liberar el mapa en caso de error
+		free_map(&data->map);
 		return (1);
 	}
 	return (0);
 }
-
 
 void	run_game(t_data *data)
 {
@@ -94,7 +91,7 @@ int	main(int argc, char **argv)
 	if (!load_map(argv[1], &data.map, &data))
 	{
 		ft_printf("Error al cargar el mapa\n");
-		free_map(&data.map); // Asegurar liberación de memoria antes de salir
+		free_map(&data.map);
 		return (1);
 	}
 	ft_printf("DEBUG: Mapa cargado en memoria:\n");
@@ -102,7 +99,7 @@ int	main(int argc, char **argv)
 	check_map(&data);
 	if (setup_window(&data))
 	{
-		free_map(&data.map); // Asegurar liberación en caso de fallo de la ventana
+		free_map(&data.map);
 		return (1);
 	}
 	run_game(&data);
@@ -110,4 +107,3 @@ int	main(int argc, char **argv)
 	free_images(&data);
 	return (0);
 }
-

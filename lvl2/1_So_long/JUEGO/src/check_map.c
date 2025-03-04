@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 19:00:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 18:58:21 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:49:06 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,74 +139,75 @@ void check_items(t_map *map, t_data *data)
 // Algoritmo de Flood Fill para verificar que hay un camino válido
 int flood_fill(int y, int x, char **map, int *coins, int *exit_found, int map_width, int map_height)
 {
-    if ((y == 0 || x == 0 || y == map_height - 1 || x == map_width - 1) && map[y][x] != '1')
-        error_cases("Error: El mapa tiene una apertura en los bordes.", NULL);
-
-    if (y < 0 || x < 0 || !map[y] || !map[y][x] || map[y][x] == '1' || map[y][x] == 'V')
-        return 0;
-
-    if (map[y][x] == 'C')
-        (*coins)--;
-
-    if (map[y][x] == 'E')
-        *exit_found = 1;
-
-    map[y][x] = 'V';
-
-    flood_fill(y + 1, x, map, coins, exit_found, map_width, map_height);
-    flood_fill(y - 1, x, map, coins, exit_found, map_width, map_height);
-    flood_fill(y, x + 1, map, coins, exit_found, map_width, map_height);
-    flood_fill(y, x - 1, map, coins, exit_found, map_width, map_height);
-
-    return (*coins == 0 && *exit_found);
+	if ((y == 0 || x == 0 || y == map_height - 1
+			|| x == map_width - 1) && map[y][x] != '1')
+		error_cases("Error: El mapa tiene una apertura en los bordes.", NULL);
+	if (y < 0 || x < 0 || !map[y] || !map[y][x]
+		|| map[y][x] == '1' || map[y][x] == 'V')
+		return (0);
+	if (map[y][x] == 'C')
+		(*coins)--;
+	if (map[y][x] == 'E')
+		*exit_found = 1;
+	map[y][x] = 'V';
+	flood_fill(y + 1, x, map, coins, exit_found, map_width, map_height);
+	flood_fill(y - 1, x, map, coins, exit_found, map_width, map_height);
+	flood_fill(y, x + 1, map, coins, exit_found, map_width, map_height);
+	flood_fill(y, x - 1, map, coins, exit_found, map_width, map_height);
+	return (*coins == 0 && *exit_found);
 }
 
 // Verificar si el mapa es válido
 void check_valid_map(t_data *data)
 {
-    int coins = data->collectibles;
-    int exit_found = 0;
-    char **map_copy;
+	int coins;
+	int exit_found;
+	char **map_copy;
+	int i;
 
-    ft_printf("DEBUG: Entrando en check_valid_map()\n");
+	exit_found = 0;
+	coins = data->collectibles;
+	i = 0;
+	ft_printf("DEBUG: Entrando en check_valid_map()\n");
+	if (coins < 1)
+		error_cases("Error: No se detectaron coleccionables", data);
 
-    if (coins < 1)
-        error_cases("Error: No se detectaron coleccionables", data);
-
-    map_copy = malloc(sizeof(char *) * (data->map.height + 1));
-    if (!map_copy)
-        error_cases("Error al asignar memoria para el mapa", data);
-
-    for (int i = 0; i < data->map.height; i++)
-    {
-        map_copy[i] = strdup(data->map.grid[i]);
-        if (!map_copy[i])
-            error_cases("Error al duplicar el mapa", data);
-    }
-    map_copy[data->map.height] = NULL;
-
-    if (!flood_fill(data->player_y, data->player_x, map_copy, &coins, &exit_found,
-                    data->map.width, data->map.height))
-        error_cases("Error: El mapa no tiene una solución válida", data);
-
-    for (int i = 0; i < data->map.height; i++)
-        free(map_copy[i]);
-    free(map_copy);
+	map_copy = malloc(sizeof(char *) * (data->map.height + 1));
+	if (!map_copy)
+		error_cases("Error al asignar memoria para el mapa", data);
+	while (i < data->map.height)
+	{
+		map_copy[i] = strdup(data->map.grid[i]);
+		if (!map_copy[i])
+		{
+			error_cases("Error al duplicar el mapa", data);
+		}
+		i++;
+	}
+	map_copy[data->map.height] = NULL;
+	if (!flood_fill(data->player_y, data->player_x, map_copy, &coins, &exit_found, data->map.width, data->map.height))
+	{
+		for (i = 0; i < data->map.height; i++)
+		{
+			free(map_copy[i]);
+		}
+		free(map_copy);
+		error_cases("Error: El mapa no tiene una solución válida", data);
+	}
+	for (i = 0; i < data->map.height; i++)
+	{
+		free(map_copy[i]);
+	}
+	free(map_copy);
 }
 
 // Función principal de validación del mapa
 void check_map(t_data *data)
 {
-    ft_printf("DEBUG: Entrando en check_map()\n");
-
-    check_rectangular(&data->map, data);
-
-    check_invalid_chars(&data->map, data);  // Verificamos caracteres inválidos
-
-    check_borders(&data->map, data);
-
-    check_items(&data->map, data);  // Verificamos elementos P, E, C
-
-    check_valid_map(data);  // Verificación adicional para la validez del mapa
+	ft_printf("DEBUG: Entrando en check_map()\n");
+	check_rectangular(&data->map, data);
+	check_invalid_chars(&data->map, data);
+	check_borders(&data->map, data);
+	check_items(&data->map, data);
+	check_valid_map(data);
 }
-

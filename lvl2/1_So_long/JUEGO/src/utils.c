@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 11:52:15 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 18:52:49 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:51:02 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,14 @@ void free_images(t_data *data)
             mlx_destroy_image(data->mlx_ptr, data->objects);
     }
 }
-
+void	remove_newline(char *line, int *len)
+{
+	if (line[*len - 1] == '\n')
+	{
+		line[*len - 1] = '\0';
+		(*len)--;
+	}
+}
 
 // size_t	ft_strlen(const char *str)
 // {
