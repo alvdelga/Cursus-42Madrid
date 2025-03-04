@@ -6,67 +6,68 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 11:52:15 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 12:51:02 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:48:05 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
 // Asignar memoria para la matriz del mapa
-int allocate_map_memory(t_map *map)
+int	allocate_map_memory(t_map *map)
 {
-    // Asigna memoria para las filas del mapa
-    map->grid = malloc(sizeof(char *) * (map->height + 1));
-    if (!map->grid)
-    {
-        perror("Error al asignar memoria");
-        return 0;
-    }
+	int	i;
 
-    // Inicializa las filas a NULL
-    for (int i = 0; i < map->height; i++)
-    {
-        map->grid[i] = NULL;
-    }
-
-    map->grid[map->height] = NULL; // Marca el final de la matriz
-    return 1;
+	map->grid = malloc(sizeof(char *) * (map->height + 1));
+	if (!map->grid)
+	{
+		perror("Error al asignar memoria");
+		return (0);
+	}
+	i = 0;
+	while (i < map->height)
+	{
+		map->grid[i] = NULL;
+		i++;
+	}
+	map->grid[map->height] = NULL;
+	return (1);
 }
-
 
 // Liberar memoria del mapa
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-    int i;
+	int	i;
 
-    if (!map || !map->grid)
-        return;
-    for (i = 0; i < map->height; i++)
-    {
-        if (map->grid[i])
-            free(map->grid[i]);  // ✅ Liberar cada fila del mapa
-    }
-    free(map->grid);  // ✅ Luego liberar el array de punteros
-    map->grid = NULL;
+	if (!map || !map->grid)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->grid[i])
+			free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+	map->grid = NULL;
 }
 
-
-void free_images(t_data *data)
+void	free_images(t_data *data)
 {
-    if (data->mlx_ptr)
-    {
-        if (data->wall)
-            mlx_destroy_image(data->mlx_ptr, data->wall);
-        if (data->player)
-            mlx_destroy_image(data->mlx_ptr, data->player);
-        if (data->floor)
-            mlx_destroy_image(data->mlx_ptr, data->floor);
-        if (data->exit)
-            mlx_destroy_image(data->mlx_ptr, data->exit);
-        if (data->objects)
-            mlx_destroy_image(data->mlx_ptr, data->objects);
-    }
+	if (data->mlx_ptr)
+	{
+		if (data->wall)
+			mlx_destroy_image(data->mlx_ptr, data->wall);
+		if (data->player)
+			mlx_destroy_image(data->mlx_ptr, data->player);
+		if (data->floor)
+			mlx_destroy_image(data->mlx_ptr, data->floor);
+		if (data->exit)
+			mlx_destroy_image(data->mlx_ptr, data->exit);
+		if (data->objects)
+			mlx_destroy_image(data->mlx_ptr, data->objects);
+	}
 }
+
 void	remove_newline(char *line, int *len)
 {
 	if (line[*len - 1] == '\n')

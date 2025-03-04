@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/02 13:17:13 by alvdelga          #+#    #+#              #
-#    Updated: 2025/03/04 13:06:14 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/03/04 17:29:18 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ GNL_DIR = gnl
 MLX_DIR = minilibx-linux
 
 # Archivos fuente
-SRCS = main.c map.c draw.c game_end.c check_map.c error.c key_press.c utils.c
+SRCS = main.c map.c draw.c game_end.c check_map.c check_map2.c error.c key_press.c utils.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 
 # Archivos de ft_printf

@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 14:25:33 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:42:21 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ typedef struct s_data
 
 typedef struct s_flood_fill
 {
-    char **map;
-    int *coins;
-    int *exit_found;
-    int width;
-    int height;
-} t_flood_fill;
+	char	**map;
+	int		*coins;
+	int		*exit_found;
+	int		width;
+	int		height;
+}	t_flood_fill;
 
 // 🔹 Declaraciones de funciones
 int		load_map(const char *filename, t_map *map, t_data *data);
@@ -107,16 +107,15 @@ void	error_cases(const char *msg, t_data *data);
 void	check_map(t_data *data);
 // int		flood_fill(int y, int x, char **map, int *coins,
 // 			int *exit_found, int map_width, int map_height);
-int flood_fill(int y, int x, t_flood_fill *data);
+int		flood_fill(int y, int x, t_flood_fill *data);
 int		x_close(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 void	free_map(t_map *map);
 int		allocate_map_memory(t_map *map);
 void	free_images(t_data *data);
-void close_x_connection(void *mlx_ptr);
+void	close_x_connection(void *mlx_ptr);
 void	remove_newline(char *line, int *len);
-typedef struct s_flood_fill t_flood_fill;
-
-
-
+typedef struct s_flood_fill	t_flood_fill;
+void	free_map_copy(char **map_copy, int height);
+void	check_invalid_chars(t_map *map, t_data *data);
 #endif

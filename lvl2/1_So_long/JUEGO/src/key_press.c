@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 09:50:44 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 18:07:56 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:48:45 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	handle_exit(int keysym, t_data *data)
 	}
 }
 
-
 // Verifica si el movimiento es válido y actualiza datos del jugador
 int	validate_and_move(t_data *data, int new_x, int new_y)
 {
@@ -55,7 +54,7 @@ int	validate_and_move(t_data *data, int new_x, int new_y)
 	{
 		if (data->collectibles != 0)
 		{
-			ft_printf("Error: Debes recoger todos los coleccionables antes de salir\n");
+			ft_printf("[!] Recoge los coleccionables antes de salir\n");
 			return (0);
 		}
 		game_over_banner(data);
