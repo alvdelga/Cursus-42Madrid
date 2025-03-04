@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/03 19:56:32 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 08:13:22 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static int find_player_position(t_data *data, char *line, int row)
         {
             if (data->player_x != -1 || data->player_y != -1)
             {
-                // Si ya hay una posición de jugador registrada, hay un error
-                return 0;  // Retorna 0 si hay más de un jugador
+				return 0;  // Retorna 0 si hay múltiples posiciones de jugador
             }
             data->player_x = j;
             data->player_y = row;
@@ -77,6 +76,11 @@ static int read_map_file(int fd, t_map *map, t_data *data)
     i = 0;
     map->width = 0;
     line = get_next_line(fd);
+
+	if (!line)
+	{
+		free(line);
+	}
     
     while (line)
     {
@@ -88,12 +92,8 @@ static int read_map_file(int fd, t_map *map, t_data *data)
         // Llamada para verificar la posición del jugador
         if (!find_player_position(data, line, i))
         {
-            // Si hay múltiples jugadores, liberamos la memoria y salimos con error
-            free(line);
-            for (int j = 0; j < i; j++) {
-                free(map->grid[j]);
-            }
-            map->grid = NULL;
+			
+        	//free(line);
             error_cases("Error: Múltiples posiciones de jugador en el mapa.", data);
         }
 
