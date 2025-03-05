@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/02 13:17:13 by alvdelga          #+#    #+#              #
-#    Updated: 2025/03/04 20:45:38 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/03/05 14:13:59 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 
 # Compilador y flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I include -I ft_printf -I gnl -I minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -I include -I ft_printf -I gnl -I minilibx-linux
 
 # Directorios
 SRC_DIR = src
@@ -67,6 +67,28 @@ fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) -C $(MLX_DIR) clean
 	@$(MAKE) -C $(FT_PRINTF_DIR) clean
+
+VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
+MAPS_DIR = maps_err
+
+valgrind_test_error:
+	@echo "Ejecutando Valgrind en todos los archivos .ber dentro de $(MAPS_DIR)..."
+	@ls $(MAPS_DIR)/*.ber 2>/dev/null | while read file; do \
+		echo "Probando con $$file..."; \
+		valgrind $(VALGRIND_FLAGS) ./so_long "$$file"; \
+		echo "------------------------------"; \
+	done
+
+VALGRIND_FLAGS2 = --leak-check=full --show-leak-kinds=all --track-origins=yes
+MAPS_DIR2 = maps_valid
+
+valgrind_test_valid:
+	@echo "Ejecutando Valgrind en todos los archivos .ber dentro de $(MAPS_DIR2)..."
+	@ls $(MAPS_DIR2)/*.ber 2>/dev/null | while read file; do \
+		echo "Probando con $$file..."; \
+		valgrind $(VALGRIND_FLAGS2) ./so_long "$$file"; \
+		echo "------------------------------"; \
+	done
 
 # Regla para recompilar
 re: fclean all

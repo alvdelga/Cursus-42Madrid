@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 19:00:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 17:29:05 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:07:45 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ int	flood_fill(int y, int x, t_flood_fill *data)
 	if (data->map[y][x] == 'C')
 		(*data->coins)--;
 	if (data->map[y][x] == 'E')
+	{
 		*data->exit_found = 1;
+		return (0);
+	}
 	data->map[y][x] = 'V';
 	flood_fill(y + 1, x, data);
 	flood_fill(y - 1, x, data);
 	flood_fill(y, x + 1, data);
 	flood_fill(y, x - 1, data);
-	return (*data->coins == 0 && *data->exit_found);
+	return (*data->coins == 0);
 }
 
 char	**allocate_map_copy(t_data *data)
@@ -80,10 +83,15 @@ void	check_valid_map(t_data *data)
 	map_copy = allocate_map_copy(data);
 	flood_data = (t_flood_fill){map_copy, &coins, &exit_found,
 		data->map.width, data->map.height};
-	if (!flood_fill(data->player_y, data->player_x, &flood_data))
+	if (!flood_fill(data->player_y, data->player_x, &flood_data) || coins > 0)
 	{
 		free_map_copy(map_copy, data->map.height);
-		error_cases("Error: El mapa no tiene una solución válida", data);
+		error_cases("Error: Hay coleccionables inaccesibles", data);
+	}
+	if (!exit_found)
+	{
+		free_map_copy(map_copy, data->map.height);
+		error_cases("Error: No se puede alcanzar la salida", data);
 	}
 	free_map_copy(map_copy, data->map.height);
 }
