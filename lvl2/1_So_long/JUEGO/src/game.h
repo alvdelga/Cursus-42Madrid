@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 23:05:26 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:06:54 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,22 @@
 
 # define RST         "\033[0m"
 # define SLOW_BLINK  "\033[5m"
-# define BOLD        "\033[1m"
 
-// Colores de texto
-# define F_L_YELLOW  "\033[1;33m"
-# define F_L_GREY    "\033[1;37m"
-# define F_L_MAGENTA "\033[1;35m"
 # define RED  "\033[1;31m"
 # define CIAN    "\033[1;36m"
 # define BLUE "\033[1;34m"
 
-# define PLA "./sprites/player_rr.xpm"
-# define FLOOR "./sprites/floor.xpm"
-# define WALL "./sprites/wall.xpm"
-# define OBJECT "./sprites/collectible.xpm"
-# define EXIT "./sprites/exit.xpm"
+# define PLA "./textures/player_rr.xpm"
+# define FLOOR "./textures/floor.xpm"
+# define WALL "./textures/wall.xpm"
+# define OBJECT "./textures/collectible.xpm"
+# define EXIT "./textures/exit.xpm"
 
 # include <fcntl.h>  // open()
 # include <unistd.h> // read(), close()
 # include <stdlib.h> // malloc(), free()
 # include <stdio.h>  // perror()
-# include <string.h> // strlen()
 
-// 🔹 Definir la estructura del mapa una sola vez
 typedef struct s_map
 {
 	char	**grid;
@@ -58,7 +51,6 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
-// 🔹 Definir la estructura principal del juego
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -75,7 +67,6 @@ typedef struct s_data
 	int		player_y;
 	int		collectibles;
 	int		moves;
-	// 🔹 Agregar imágenes XPM
 	void	*wall;
 	void	*player;
 	void	*floor;
@@ -92,10 +83,8 @@ typedef struct s_flood_fill
 	int		height;
 }	t_flood_fill;
 
-// 🔹 Declaraciones de funciones
 int		load_map(const char *filename, t_map *map, t_data *data);
 void	free_map(t_map *map);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_map(t_data *data);
 void	game_over_banner(t_data *data);
 void	put_images(t_data *data);
@@ -119,4 +108,6 @@ typedef struct s_flood_fill	t_flood_fill;
 void	free_map_copy(char **map_copy, int height);
 void	check_invalid_chars(t_map *map, t_data *data);
 int		has_valid_extension(const char *filename, const char *ext);
+char	*ft_strdup(const char *s1);
+int		ft_strcmp(const char *s1, const char *s2);
 #endif

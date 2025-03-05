@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 19:00:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/05 14:07:45 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:00:15 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**allocate_map_copy(t_data *data)
 	i = 0;
 	while (i < data->map.height)
 	{
-		map_copy[i] = strdup(data->map.grid[i]);
+		map_copy[i] = ft_strdup(data->map.grid[i]);
 		if (!map_copy[i])
 		{
 			free_map_copy(map_copy, i);
@@ -77,7 +77,6 @@ void	check_valid_map(t_data *data)
 
 	exit_found = 0;
 	coins = data->collectibles;
-	ft_printf("DEBUG: Entrando en check_valid_map()\n");
 	if (coins < 1)
 		error_cases("Error: No se detectaron coleccionables", data);
 	map_copy = allocate_map_copy(data);
@@ -98,7 +97,6 @@ void	check_valid_map(t_data *data)
 
 void	check_map(t_data *data)
 {
-	ft_printf("DEBUG: Entrando en check_map()\n");
 	check_rectangular(&data->map, data);
 	check_invalid_chars(&data->map, data);
 	check_borders(&data->map, data);

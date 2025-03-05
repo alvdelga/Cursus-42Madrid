@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 20:00:00 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:22 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:58:29 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,19 @@ int	has_valid_extension(const char *filename, const char *ext)
 	if (filename_len <= ext_len)
 		return (0);
 	dot = filename + filename_len - ext_len;
-	if (strcmp(dot, ext) != 0)
+	if (ft_strcmp(dot, ext) != 0)
 		return (0);
 	if (dot == filename || *(dot - 1) == '.')
 		return (0);
 	return (1);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

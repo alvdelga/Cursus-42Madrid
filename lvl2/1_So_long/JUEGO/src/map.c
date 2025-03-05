@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 20:53:24 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:15:08 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,25 @@ static int	read_map_file(int fd, t_map *map)
 	return (1);
 }
 
-// Función principal para cargar el mapa desde el archivo
 int	load_map(const char *filename, t_map *map, t_data *data)
 {
 	int	fd;
 
 	if (!has_valid_extension(filename, ".ber"))
-		error_cases("El archivo debe tener extensión .ber", data);
+		error_cases("[!] El archivo debe tener extensión .ber", data);
 	map->height = count_lines(filename);
 	if (map->height <= 0)
-		error_cases("Error leyendo mapa", data);
+		error_cases("[!] Fallo leyendo el mapa", data);
 	if (!allocate_map_memory(map))
-		error_cases("Error al asignar memoria para el mapa", data);
+		error_cases("[!] Fallo al asignar memoria para el mapa", data);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		error_cases("Error abriendo archivo", data);
+		error_cases("[!] Fallo abriendo el archivo", data);
 	if (!read_map_file(fd, map))
 	{
 		free_map(map);
 		close(fd);
-		error_cases("Error leyendo el archivo del mapa", data);
+		error_cases("[!] Fallo leyendo el archivo del mapa", data);
 	}
 	close(fd);
 	return (1);

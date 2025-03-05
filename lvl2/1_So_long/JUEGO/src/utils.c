@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 11:52:15 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 17:48:05 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:15:45 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,22 @@ void	remove_newline(char *line, int *len)
 	}
 }
 
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	size_t	lens1;
+
+	lens1 = ft_strlen(s1);
+	s2 = malloc((lens1 + 1));
+	if (!s2)
+		return (NULL);
+	while (*s1)
+	{
+		*s2++ = *s1++;
+	}
+	*s2 = '\0';
+	return (s2 - lens1);
+}
 // size_t	ft_strlen(const char *str)
 // {
 // 	size_t	i;

@@ -6,7 +6,7 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/02 13:17:13 by alvdelga          #+#    #+#              #
-#    Updated: 2025/03/05 14:13:59 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/03/05 14:44:41 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,17 +52,14 @@ $(MLX_DIR)/libmlx.a:
 	@echo "Compilando MiniLibX..."
 	@$(MAKE) -C $(MLX_DIR)
 
-# Compilar el programa
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 
-# Regla para limpiar archivos .o
 clean:
 	rm -f $(OBJS)
 	@$(MAKE) -C $(MLX_DIR) clean
 	@$(MAKE) -C $(FT_PRINTF_DIR) clean
 
-# Regla para limpiar todo
 fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) -C $(MLX_DIR) clean
@@ -90,5 +87,4 @@ valgrind_test_valid:
 		echo "------------------------------"; \
 	done
 
-# Regla para recompilar
 re: fclean all

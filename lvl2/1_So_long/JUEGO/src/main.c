@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 19:31:58 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:13:27 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	count_collectibles(t_data *data)
 			return ;
 		}
 		x = 0;
-		while (x < (int)strlen(data->map.grid[y]))
+		while (x < (int)ft_strlen(data->map.grid[y]))
 		{
 			if (data->map.grid[y][x] == 'C')
 				data->collectibles++;
@@ -100,11 +100,10 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error\n: %s <archivo.ber>\n", argv[0]), 1);
 	if (!load_map(argv[1], &data.map, &data))
 	{
-		ft_printf("Error al cargar el mapa\n");
+		ft_printf("Error\n al cargar el mapa\n");
 		free_map(&data.map);
 		return (1);
 	}
-	ft_printf("DEBUG: Mapa cargado en memoria:\n");
 	count_collectibles(&data);
 	check_map(&data);
 	if (setup_window(&data))
