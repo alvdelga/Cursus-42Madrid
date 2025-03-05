@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 09:50:44 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 17:48:45 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:25:07 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	handle_exit(int keysym, t_data *data)
 {
 	if (keysym == 65307)
 	{
+		game_over_banner(data);
 		free_images(data);
 		close_x_connection(data->mlx_ptr);
 		if (data->win_ptr)

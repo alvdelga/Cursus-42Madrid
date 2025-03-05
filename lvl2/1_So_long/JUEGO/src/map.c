@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:23:02 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 19:31:25 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:53:24 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	load_map(const char *filename, t_map *map, t_data *data)
 {
 	int	fd;
 
+	if (!has_valid_extension(filename, ".ber"))
+		error_cases("El archivo debe tener extensión .ber", data);
 	map->height = count_lines(filename);
 	if (map->height <= 0)
 		error_cases("Error leyendo mapa", data);

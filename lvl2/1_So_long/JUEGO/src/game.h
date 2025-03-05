@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 10:04:45 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/04 17:42:21 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/04 23:05:26 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,5 @@ void	remove_newline(char *line, int *len);
 typedef struct s_flood_fill	t_flood_fill;
 void	free_map_copy(char **map_copy, int height);
 void	check_invalid_chars(t_map *map, t_data *data);
+int		has_valid_extension(const char *filename, const char *ext);
 #endif
