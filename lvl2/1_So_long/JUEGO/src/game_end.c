@@ -6,7 +6,7 @@
 /*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:10:26 by alvdelga          #+#    #+#             */
-/*   Updated: 2025/03/05 16:14:11 by alvdelga         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:22:37 by alvdelga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	game_over_banner(t_data *data)
 	ft_printf("%s║ ╦╠═╣║║║║╣   ║ ║╚╗╔╝║╣ ╠╦╝\n", CIAN);
 	ft_printf("%s╚═╝╩ ╩╩ ╩╚═╝  ╚═╝ ╚╝ ╚═╝╩╚═%s\n", BLUE, RST);
 	ft_printf("%s\n", RST);
-	ft_printf("[+] Tus movimientos: %d\n", data->moves);
+	ft_printf("[+] Tus movimientos: %d\n\n", data->moves);
 	close_x_connection(data->mlx_ptr);
 	free_images(data);
 	if (data->win_ptr)
