@@ -1,0 +1,118 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/28 11:22:24 by alvdelga          #+#    #+#             */
+/*   Updated: 2025/03/05 15:13:27 by alvdelga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "game.h"
+
+void	count_collectibles(t_data *data)
+{
+	int	y;
+	int	x;
+
+	if (!data->map.grid)
+	{
+		ft_printf("Error: data->map.grid es NULL\n");
+		return ;
+	}
+	y = 0;
+	while (y < data->map.height)
+	{
+		if (!data->map.grid[y])
+		{
+			ft_printf("Error: data->map.grid[%d] es NULL\n", y);
+			return ;
+		}
+		x = 0;
+		while (x < (int)ft_strlen(data->map.grid[y]))
+		{
+			if (data->map.grid[y][x] == 'C')
+				data->collectibles++;
+			x++;
+		}
+		y++;
+	}
+}
+
+void	init_game(t_data *data)
+{
+	data->mlx_ptr = NULL;
+	data->win_ptr = NULL;
+	data->img = NULL;
+	data->addr = NULL;
+	data->bits_per_pixel = 0;
+	data->line_length = 0;
+	data->endian = 0;
+	data->win_width = 0;
+	data->win_high = 0;
+	data->player_x = -1;
+	data->player_y = -1;
+	data->collectibles = 0;
+	data->moves = 0;
+	data->map.grid = NULL;
+	data->map.width = 0;
+	data->map.height = 0;
+}
+
+int	setup_window(t_data *data)
+{
+	data->win_width = data->map.width * TILE_SIZE;
+	data->win_high = data->map.height * TILE_SIZE;
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	{
+		free_map(&data->map);
+		return (1);
+	}
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width,
+			data->win_high, "So_long");
+	if (!data->win_ptr)
+	{
+		free(data->mlx_ptr);
+		free_map(&data->map);
+		return (1);
+	}
+	return (0);
+}
+
+void	run_game(t_data *data)
+{
+	put_images(data);
+	draw_map(data);
+	mlx_key_hook(data->win_ptr, handle_keypress, data);
+	mlx_hook(data->win_ptr, 17, 0, x_close, data);
+	mlx_loop(data->mlx_ptr);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	init_game(&data);
+	if (argc != 2)
+		return (ft_printf("Error\n: %s <archivo.ber>\n", argv[0]), 1);
+	if (!load_map(argv[1], &data.map, &data))
+	{
+		ft_printf("Error\n al cargar el mapa\n");
+		free_map(&data.map);
+		return (1);
+	}
+	count_collectibles(&data);
+	check_map(&data);
+	if (setup_window(&data))
+	{
+		free_map(&data.map);
+		return (1);
+	}
+	run_game(&data);
+	free_map(&data.map);
+	free_images(&data);
+	return (0);
+}
