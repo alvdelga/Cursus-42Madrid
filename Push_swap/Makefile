@@ -6,13 +6,13 @@
 #    By: alvdelga <alvdelga@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 18:43:05 by alvdelga          #+#    #+#              #
-#    Updated: 2025/02/24 11:42:08 by alvdelga         ###   ########.fr        #
+#    Updated: 2025/04/01 21:33:07 by alvdelga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-NAME1 = push_swap
+NAME = push_swap
 
 MANDATORY = mandatory/
 GNL = gnl/
@@ -34,16 +34,16 @@ SRC_FILES = move_to_b.c \
 SRC = $(addprefix $(MANDATORY), $(SRC_FILES))
 OBJ1 = $(SRC:.c=.o)
 
-all: $(NAME1)
+all: $(NAME)
 
-$(NAME1): $(OBJ1)
-	$(CC) $(CFLAGS) -o $(NAME1) $(OBJ1)
+$(NAME): $(OBJ1)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ1)
 
 clean:
 	rm -f $(OBJ1)
 
 fclean: clean
-	rm -f $(NAME1)
+	rm -f $(NAME)
 re: fclean all
 
 test2:				$(NAME)	
