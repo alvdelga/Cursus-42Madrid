@@ -51,7 +51,7 @@ Ejemplo de salida:
 ```
 
 ---
-
+```bash
 📜 Script de Monitorización
 🕑 Este script está configurado con `cron` para ejecutarse automáticamente cada 10 minutos mostrando el estado del sistema mediante `wall`.
 
