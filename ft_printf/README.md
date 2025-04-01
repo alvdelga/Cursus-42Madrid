@@ -42,15 +42,6 @@ Printf/
 
 ---
 
-## 🧪 Cómo compilar y usar
-
-```bash
-make
-./a.out
-```
-
----
-
 ## ✅ Conversión soportadas
 
 | Conversión | Descripción                          |
