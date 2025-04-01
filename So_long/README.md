@@ -1,6 +1,6 @@
 # 🕹️ So_long
 
-**So_long** es un proyecto del campus 42 Madrid desarrollado en C usando la librería gráfica [MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx). El objetivo del proyecto es crear un pequeño videojuego en 2D donde el jugador pueda moverse por un mapa, recolectar objetos y llegar a la salida.
+**So_long** es un proyecto del campus **42 Madrid** desarrollado en **C** usando la librería gráfica [MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx). El objetivo del proyecto es crear un pequeño videojuego en 2D donde el jugador pueda moverse por un mapa, recolectar objetos y llegar a la salida.
 
 ![Gameplay Preview](./textures/screenshot.png)
 
@@ -12,7 +12,22 @@
 - Recolectar todos los objetos (`C`) en el mapa.
 - Llegar a la salida (`E`) una vez recogidos todos los objetos.
 
-Si el jugador intenta salir antes de recoger todos los coleccionables, el juego lo impedirá.
+🧩 *Si el jugador intenta salir antes de recoger todos los coleccionables, el juego lo impedirá.*
+
+---
+
+## 📚 ¿Qué se aprende en este proyecto?
+
+Este proyecto te obliga a aplicar muchos conceptos clave del lenguaje C y del desarrollo de software:
+
+- 🧠 **Gestión dinámica de memoria** (con `malloc`, `free`, etc.).
+- 🧮 **Algoritmos de validación** (mapas, estructuras, inputs).
+- 🏗️ **Programación estructurada** con archivos bien organizados.
+- 🖼️ **Renderizado gráfico 2D en tiempo real** con MiniLibX.
+- 🎮 **Manejo de eventos de teclado** y lógica de juego.
+- 🐞 **Debugging intensivo**, gestión de errores y edge cases.
+
+Y por si fuera poco... ¡ves tu código cobrar vida en forma de juego! 😄
 
 ---
 
@@ -71,6 +86,15 @@ make
 | `S` / `↓`    | Mover abajo        |
 | `D` / `→`    | Mover derecha      |
 | `ESC`        | Salir del juego    |
+
+---
+
+## 💡 Curiosidades técnicas
+
+- El mapa debe estar **rodeado de muros** (`1`) y tener solo un jugador (`P`), al menos un coleccionable (`C`) y una salida (`E`).
+- Usa un algoritmo tipo **flood fill** para verificar si el mapa es jugable antes de iniciar.
+- Se controla la **interacción en tiempo real** con eventos de teclado y se limita el acceso a la salida si no se cumplen las condiciones.
+- Está todo programado **sin librerías externas** más allá de MiniLibX.
 
 ---
 
