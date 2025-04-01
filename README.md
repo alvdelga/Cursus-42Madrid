@@ -1,5 +1,9 @@
 # 🧠 Cursus-42Madrid
 
+<p align="center">
+  <img src="So_long/cursus-banner.png" alt="Cursus-42Madrid banner" width="600"/>
+</p>
+
 Repositorio contenedor de mis proyectos realizados en el campus [42 Madrid](https://42madrid.com/) como parte del proceso formativo en programación intensiva.
 
 Aquí encontrarás los ejercicios y proyectos que abarcan desde el desarrollo en C hasta estructuras de datos, manejo de memoria, señales, algoritmos y más.
