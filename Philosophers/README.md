@@ -1,6 +1,5 @@
 # 🧠 Philosophers
 
-> Nunca pensé que la filosofía llegara a ser tan letal.
 
 ![Philosophers Banner](./cursus-banner.png)
 
