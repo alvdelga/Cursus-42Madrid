@@ -74,12 +74,6 @@ make
 
 ---
 
-## 🖼️ Captura de pantalla
-
-![Gameplay Preview](./textures/screenshot.png)
-
----
-
 ## 📌 Autor
 
 - 👨‍💻 **alvdelga** - Estudiante de 42 Madrid
