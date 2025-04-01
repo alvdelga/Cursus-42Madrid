@@ -27,9 +27,7 @@ Minitalk/
 ├── minitalk_bonus.h
 └── Makefile
 ```
-
 ---
-
 
 ### Parte obligatoria:
 
