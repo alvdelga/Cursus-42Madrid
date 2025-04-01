@@ -76,7 +76,7 @@ make
 
 ## 🖼️ Captura de pantalla
 
-> Asegúrate de tener una imagen llamada `screenshot.png` dentro del directorio `textures/` para que se muestre correctamente aquí.
+![Gameplay Preview](./textures/screenshot.png)
 
 ---
 
