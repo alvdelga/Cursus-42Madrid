@@ -18,18 +18,8 @@
 
 ---
 
-## 🛠 Instalación rápida
-
-```bash
-bash -c "$(curl https://grademe.fr)"
-```
-
-> Asegúrate de tener `bash`, `make`, y un entorno compatible (Linux/Mac).
-
----
-
 ## 🧑‍💻 Cómo usar
-
+> Asegúrate de tener `bash`, `make`, y un entorno compatible (Linux/Mac).
 ```bash
 make          # Lanza el emulador y selecciona nivel
 make grade    # Corrige el ejercicio actual
