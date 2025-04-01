@@ -49,12 +49,6 @@ make
 ./a.out
 ```
 
-También puedes compilarlo manualmente para pruebas:
-
-```bash
-gcc ft_printf.c utilities.c ft_itoa_u.c && ./a.out
-```
-
 ---
 
 ## ✅ Conversión soportadas
